@@ -8,7 +8,7 @@ public class PlayerStamina : MonoBehaviour
     [Tooltip("Time in seconds before stamina starts to regenerate")]
     public float RegenerationDelay = .1f;
 
-    [Tooltip("Time in seconds before stamina starts to regenerate")]
+    [Tooltip("Rate at which stamina regenerates")]
     public float RegenerationRate = 2f;
 
     public float CurStamina { get; private set; }
