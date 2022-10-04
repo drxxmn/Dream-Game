@@ -46,6 +46,14 @@ namespace StarterAssets
         [Tooltip("Time required to pass before entering the fall state. Useful for walking down stairs")]
         public float FallTimeout = 0.15f;
 
+        [Header("Float behaviour")]
+        [Tooltip("Character floating mode enabled or not")]
+        public bool FloatMode = false;
+
+        [Range(0, .5f)]
+        [Tooltip("Reduction in gravity when floating (lower = less gravity/slower fall")]
+        public float GravityReduction = 0.1f;
+
         [Header("Player Grounded")]
         [Tooltip("If the character is grounded or not. Not part of the CharacterController built in grounded check")]
         public bool Grounded = true;
@@ -156,6 +164,7 @@ namespace StarterAssets
         {
             _hasAnimator = TryGetComponent(out _animator);
 
+            FloatCheck();
             JumpAndGravity();
             GroundedCheck();
             Move();
@@ -173,6 +182,15 @@ namespace StarterAssets
             _animIDJump = Animator.StringToHash("Jump");
             _animIDFreeFall = Animator.StringToHash("FreeFall");
             _animIDMotionSpeed = Animator.StringToHash("MotionSpeed");
+        }
+
+        private void FloatCheck()
+        {
+            if (_input.playerFloat)
+            {
+                _input.playerFloat = false;
+                FloatMode = !FloatMode;
+            }
         }
 
         private void GroundedCheck()
@@ -344,7 +362,14 @@ namespace StarterAssets
             // apply gravity over time if under terminal (multiply by delta time twice to linearly speed up over time)
             if (_verticalVelocity < _terminalVelocity)
             {
-                _verticalVelocity += Gravity * Time.deltaTime;
+                if (FloatMode && _verticalVelocity < 0.0f)
+                {
+                    _verticalVelocity = Gravity * GravityReduction;
+                }
+                else
+                {
+                    _verticalVelocity += Gravity * Time.deltaTime;
+                }
             }
         }
 
