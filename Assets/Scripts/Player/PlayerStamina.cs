@@ -6,10 +6,10 @@ public class PlayerStamina : MonoBehaviour
     public float MaxStamina = 1f;
 
     [Tooltip("Time in seconds before stamina starts to regenerate")]
-    public float RegenerationDelay = 1f;
+    public float RegenerationDelay = .1f;
 
     [Tooltip("Time in seconds before stamina starts to regenerate")]
-    public float RegenerationRate = 1f;
+    public float RegenerationRate = 2f;
 
     public float CurStamina { get; private set; }
 
