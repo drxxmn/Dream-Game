@@ -38,10 +38,10 @@ public class PlayerStamina : MonoBehaviour
     {
         CurStamina = Mathf.Clamp(CurStamina + amount, 0, MaxStamina);
 
-        if(CurStamina == MaxStamina)
-         {
+        if (CurStamina == MaxStamina)
+        {
             _lastUsedTime = -1;
-         }
+        }
     }
 
     public void ReduceStamina(float amount)
