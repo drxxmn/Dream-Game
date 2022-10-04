@@ -30,10 +30,10 @@ public class PlayerStamina : MonoBehaviour
     private void RegenerateStamina()
     {
         float extraStamina = RegenerationRate * Time.deltaTime;
-        AddStamina(extraStamina);
+        IncreaseStamina(extraStamina);
     }
 
-    public void AddStamina(float amount)
+    public void IncreaseStamina(float amount)
     {
         CurStamina = Mathf.Clamp(CurStamina + amount, 0, MaxStamina);
     }
