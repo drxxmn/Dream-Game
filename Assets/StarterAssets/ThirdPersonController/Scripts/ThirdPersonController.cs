@@ -113,6 +113,7 @@ namespace StarterAssets
         private CharacterController _controller;
         private StarterAssetsInputs _input;
         private GameObject _mainCamera;
+        private PlayerStamina _stamina;
 
         private const float _threshold = 0.01f;
 
@@ -147,6 +148,7 @@ namespace StarterAssets
             _hasAnimator = TryGetComponent(out _animator);
             _controller = GetComponent<CharacterController>();
             _input = GetComponent<StarterAssetsInputs>();
+            _stamina = GetComponent<PlayerStamina>();
 #if ENABLE_INPUT_SYSTEM && STARTER_ASSETS_PACKAGES_CHECKED
             _playerInput = GetComponent<PlayerInput>();
 #else
@@ -320,14 +322,7 @@ namespace StarterAssets
                 // Jump
                 if (_input.jump && _jumpTimeoutDelta <= 0.0f)
                 {
-                    // the square root of H * -2 * G = how much velocity needed to reach desired height
-                    _verticalVelocity = Mathf.Sqrt(JumpHeight * -2f * Gravity);
-
-                    // update animator if using character
-                    if (_hasAnimator)
-                    {
-                        _animator.SetBool(_animIDJump, true);
-                    }
+                    Jump();
                 }
 
                 // jump timeout
@@ -335,6 +330,8 @@ namespace StarterAssets
                 {
                     _jumpTimeoutDelta -= Time.deltaTime;
                 }
+
+                _input.jump = false;
             }
             else
             {
@@ -353,6 +350,13 @@ namespace StarterAssets
                     {
                         _animator.SetBool(_animIDFreeFall, true);
                     }
+
+                    // Double jump
+                    if (_input.jump && _stamina.CurStamina >= 1f)
+                    {
+                        Jump();
+                        _stamina.ReduceStamina(1f);
+                    }
                 }
 
                 // if we are not grounded, do not jump
@@ -370,6 +374,18 @@ namespace StarterAssets
                 {
                     _verticalVelocity += Gravity * Time.deltaTime;
                 }
+            }
+        }
+
+        private void Jump()
+        {
+            // the square root of H * -2 * G = how much velocity needed to reach desired height
+            _verticalVelocity = Mathf.Sqrt(JumpHeight * -2f * Gravity);
+
+            // update animator if using character
+            if (_hasAnimator)
+            {
+                _animator.SetBool(_animIDJump, true);
             }
         }
 
