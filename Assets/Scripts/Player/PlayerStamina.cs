@@ -44,7 +44,7 @@ public class PlayerStamina : MonoBehaviour
          }
     }
 
-    public void ReduceStamine(float amount)
+    public void ReduceStamina(float amount)
     {
         CurStamina -= amount;
         _lastUsedTime = Time.time;
