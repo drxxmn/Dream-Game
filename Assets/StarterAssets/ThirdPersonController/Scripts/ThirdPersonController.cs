@@ -322,6 +322,7 @@ namespace StarterAssets
                 // Jump
                 if (_input.jump && _jumpTimeoutDelta <= 0.0f)
                 {
+                    _input.jump = false;
                     Jump();
                 }
 
@@ -330,8 +331,6 @@ namespace StarterAssets
                 {
                     _jumpTimeoutDelta -= Time.deltaTime;
                 }
-
-                _input.jump = false;
             }
             else
             {
