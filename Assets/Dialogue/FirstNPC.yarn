@@ -1,0 +1,15 @@
+﻿title: Start
+---
+FirstNPC: Hey! You there!
+FirstNPC: You're new here right?
+FirstNPC: I don't recognise you.
+FirstNPC: ...
+FirstNPC: Welcome!
+FirstNPC: ...
+FirstNPC: Uhm... do you understand what I am saying?
+-> Player: *Nod*
+FirstNPC: Ah. Good.
+FirstNPC: So, you can't speak?
+FirstNPC: You must have lost your voice when arriving here.
+FirstNPC: You see...
+===
