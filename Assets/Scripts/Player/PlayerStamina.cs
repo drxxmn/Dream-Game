@@ -49,13 +49,14 @@ public class PlayerStamina : MonoBehaviour
 
     public void IncreaseProgress(int amount)
     {
-        UpgradeProgress++;
+        UpgradeProgress += amount;
 
         if (UpgradeProgress >= ShardsToUpgrade)
         {
-            int pointsToUpgrade = UpgradeProgress % ShardsToUpgrade;
+            int pointsToUpgrade = UpgradeProgress / ShardsToUpgrade;
+            int remainder = UpgradeProgress % ShardsToUpgrade;
             MaxStamina += pointsToUpgrade;
-            UpgradeProgress -= pointsToUpgrade;
+            UpgradeProgress = remainder;
         }
     }
 }
