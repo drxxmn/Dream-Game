@@ -354,7 +354,7 @@ namespace StarterAssets
                     if (_input.jump && _stamina.CurStamina >= 1f)
                     {
                         Jump();
-                        _stamina.ReduceStamina(1f);
+                        _stamina.ReduceCurStamina(1f);
                     }
                 }
 

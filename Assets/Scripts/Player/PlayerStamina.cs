@@ -9,7 +9,11 @@ public class PlayerStamina : MonoBehaviour
     [Tooltip("Rate at which stamina regenerates")]
     public float RegenerationRate = 2f;
 
+    [Tooltip("How many shards needed to get a full stamina point")]
+    public int ShardsToUpgrade = 4;
+
     public float CurStamina { get; private set; }
+    public int UpgradeProgress { get; private set; } = 0;
 
     private ThirdPersonController _thirdPersonController;
 
@@ -30,16 +34,28 @@ public class PlayerStamina : MonoBehaviour
     private void RegenerateStamina()
     {
         float extraStamina = RegenerationRate * Time.deltaTime;
-        IncreaseStamina(extraStamina);
+        IncreaseCurStamina(extraStamina);
     }
 
-    public void IncreaseStamina(float amount)
+    private void IncreaseCurStamina(float amount)
     {
         CurStamina = Mathf.Clamp(CurStamina + amount, 0, MaxStamina);
     }
 
-    public void ReduceStamina(float amount)
+    public void ReduceCurStamina(float amount)
     {
         CurStamina -= amount;
+    }
+
+    public void IncreaseProgress(int amount)
+    {
+        UpgradeProgress++;
+
+        if (UpgradeProgress >= ShardsToUpgrade)
+        {
+            int pointsToUpgrade = UpgradeProgress % ShardsToUpgrade;
+            MaxStamina += pointsToUpgrade;
+            UpgradeProgress -= pointsToUpgrade;
+        }
     }
 }
