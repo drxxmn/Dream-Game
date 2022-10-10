@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.Events;
 #if ENABLE_INPUT_SYSTEM && STARTER_ASSETS_PACKAGES_CHECKED
 using UnityEngine.InputSystem;
 #endif
@@ -13,6 +14,7 @@ namespace StarterAssets
 		public bool jump;
 		public bool sprint;
 		public bool playerFloat;
+		public UnityEvent menuPressed = new UnityEvent();
 
 		[Header("Movement Settings")]
 		public bool analogMovement;
@@ -48,6 +50,11 @@ namespace StarterAssets
 		public void OnFloat(InputValue value)
 		{
 			FloatInput(value.isPressed);
+		}
+
+		public void OnMenu(InputValue value)
+		{
+			menuPressed.Invoke();
 		}
 #endif
 
