@@ -1,5 +1,6 @@
 using UnityEngine;
 using StarterAssets;
+using UnityEngine.Events;
 
 public class PlayerStamina : MonoBehaviour
 {
@@ -14,6 +15,16 @@ public class PlayerStamina : MonoBehaviour
 
     public float CurStamina { get; private set; }
     public int UpgradeProgress { get; private set; } = 0;
+
+    [System.Serializable]
+    private class Events
+    {
+        public UnityEvent ProgressIncreased = new UnityEvent();
+        public UnityEvent MaxStaminaIncreased = new UnityEvent();
+        public UnityEvent StaminaEmpty = new UnityEvent();
+        public UnityEvent StaminaFull = new UnityEvent();
+    }
+    [SerializeField] private Events _events;
 
     private ThirdPersonController _thirdPersonController;
 
@@ -44,7 +55,12 @@ public class PlayerStamina : MonoBehaviour
 
     public void ReduceCurStamina(float amount)
     {
-        CurStamina -= amount;
+        CurStamina = Mathf.Clamp(CurStamina - amount, 0, MaxStamina);
+
+        if (CurStamina == 0)
+        {
+            _events.StaminaEmpty.Invoke();
+        }
     }
 
     public void IncreaseProgress(int amount)
@@ -57,6 +73,11 @@ public class PlayerStamina : MonoBehaviour
             int remainder = UpgradeProgress % ShardsToUpgrade;
             MaxStamina += pointsToUpgrade;
             UpgradeProgress = remainder;
+            _events.MaxStaminaIncreased.Invoke();
+        }
+        else
+        {
+            _events.ProgressIncreased.Invoke();
         }
     }
 }
