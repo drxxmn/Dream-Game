@@ -28,25 +28,25 @@ public class UIManager : MonoBehaviour
     {
         if (_canvas == null)
         {
-            Debug.LogError("Canvas object in UIManager is missing!");
+            ErrorAndDisable("Canvas object in UIManager is missing!");
         }
 
         if (_pauseMenu == null)
         {
             _pauseMenu = GameObject.Find("Pause Menu");
-            if (_pauseMenu == null) Debug.LogError("Pause Menu UI object in UIManager is missing!");
+            if (_pauseMenu == null) ErrorAndDisable("Pause Menu UI object in UIManager is missing!");
         }
 
         if (_playerStamina == null)
         {
             _playerStamina = FindObjectOfType<PlayerStamina>();
-            if (_playerStamina == null) Debug.LogError("Player Stamina object in UIManager is missing!");
+            if (_playerStamina == null) ErrorAndDisable("Player Stamina object in UIManager is missing!");
         }
 
         if (_staminaBar == null)
         {
             _staminaBar = GameObject.Find("Stamina Bar");
-            if (_staminaBar == null) Debug.LogError("Stamina Bar UI object in UIManager is missing!");
+            if (_staminaBar == null) ErrorAndDisable("Stamina Bar UI object in UIManager is missing!");
         }
 
         _referenceStaminaUnit = _staminaBar.transform.GetChild(0).gameObject;
@@ -112,5 +112,11 @@ public class UIManager : MonoBehaviour
             _staminaUnits.Add(staminaUnit);
             _staminaUnitsImages.Add(staminaUnit.GetComponent<Image>());
         }
+    }
+
+    private void ErrorAndDisable(string text)
+    {
+        Debug.LogError(text);
+        enabled = false;
     }
 }
