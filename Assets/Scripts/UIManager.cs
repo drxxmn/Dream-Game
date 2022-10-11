@@ -33,7 +33,7 @@ public class UIManager : MonoBehaviour
 
         if (_pauseMenu == null)
         {
-            _pauseMenu = GameObject.Find("Pause Menu");
+            _pauseMenu = _canvas.transform.Find("Pause Menu").gameObject;
             if (_pauseMenu == null) ErrorAndDisable("Pause Menu UI object in UIManager is missing!");
         }
 
@@ -45,7 +45,7 @@ public class UIManager : MonoBehaviour
 
         if (_staminaBar == null)
         {
-            _staminaBar = GameObject.Find("Stamina Bar");
+            _staminaBar = _canvas.transform.Find("Stamina Bar").gameObject;
             if (_staminaBar == null) ErrorAndDisable("Stamina Bar UI object in UIManager is missing!");
         }
 
