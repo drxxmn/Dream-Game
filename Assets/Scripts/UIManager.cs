@@ -6,7 +6,6 @@ public class UIManager : MonoBehaviour
     [SerializeField]
     [Tooltip("Put your Pause Menu gameobject here")]
     private GameObject _pauseMenu;
-    private StarterAssetsInputs _input;
 
     private void Start()
     {
@@ -15,11 +14,9 @@ public class UIManager : MonoBehaviour
             _pauseMenu = GameObject.Find("Pause Menu");
             if (_pauseMenu == null) Debug.LogError("Pause Menu UI object in UIManager is missing!");
         }
-        _input = FindObjectOfType<StarterAssetsInputs>();
-        _input.menuPressed.AddListener(MenuToggle);
     }
 
-    private void MenuToggle()
+    public void MenuToggle()
     {
         if (!_pauseMenu.activeInHierarchy) ShowMenu();
         else ResumeGame();
