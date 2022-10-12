@@ -78,11 +78,10 @@ public class UIManager : MonoBehaviour
         Cursor.visible = true;
         foreach (Transform child in _canvas.transform)
         {
-            if (child.gameObject == _pauseMenu) child.gameObject.SetActive(true);
-            else child.gameObject.SetActive(false);
+            if (child.gameObject.tag == "Yarn") child.gameObject.SetActive(false);
         }
+        _pauseMenu.SetActive(true);
         Time.timeScale = 0;
-
     }
 
     public void ResumeGame()
@@ -91,9 +90,9 @@ public class UIManager : MonoBehaviour
         Cursor.visible = false;
         foreach (Transform child in _canvas.transform)
         {
-            if (child.gameObject == _pauseMenu) child.gameObject.SetActive(false);
-            else child.gameObject.SetActive(true);
+            if (child.gameObject.tag == "Yarn") child.gameObject.SetActive(true);
         }
+        _pauseMenu.SetActive(false);
         Time.timeScale = 1;
     }
 
