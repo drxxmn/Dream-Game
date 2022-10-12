@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -23,6 +22,10 @@ public class UIManager : MonoBehaviour
     private GameObject _referenceStaminaUnit;
     private List<GameObject> _staminaUnits = new List<GameObject>();
     private List<Image> _staminaUnitsImages = new List<Image>();
+
+    [Header("Stamina Unit Sprites")]
+    [SerializeField] private Sprite _staminaUnitFull;
+    [SerializeField] private Sprite _staminaUnitEmpty;
 
     private void Start()
     {
@@ -58,8 +61,8 @@ public class UIManager : MonoBehaviour
     {
         for (int i = 0; i < _playerStamina.MaxStamina; i++)
         {
-            if (i + 1 > _playerStamina.CurStamina) _staminaUnitsImages[i].color = Color.green;
-            else _staminaUnitsImages[i].color = Color.white;
+            if (i + 1 > _playerStamina.CurStamina) _staminaUnitsImages[i].sprite = _staminaUnitEmpty;
+            else _staminaUnitsImages[i].sprite = _staminaUnitFull;
         }
     }
 
