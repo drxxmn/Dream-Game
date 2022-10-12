@@ -75,9 +75,7 @@ public class PlayerStamina : MonoBehaviour
             UpgradeProgress = remainder;
             _events.MaxStaminaIncreased.Invoke();
         }
-        else
-        {
-            _events.ProgressIncreased.Invoke();
-        }
+        
+        _events.ProgressIncreased.Invoke();
     }
 }

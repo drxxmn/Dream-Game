@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -23,9 +24,17 @@ public class UIManager : MonoBehaviour
     private List<GameObject> _staminaUnits = new List<GameObject>();
     private List<Image> _staminaUnitsImages = new List<Image>();
 
+    [SerializeField]
+    [Tooltip("Put your Shard Indicator gameobject here")]
+    private GameObject _shardIndicator;
+    private TextMeshProUGUI _shardIndicatorText;
+    private Image _shardIndicatorImage;
+
     [Header("Stamina Unit Sprites")]
     [SerializeField] private Sprite _staminaUnitFull;
     [SerializeField] private Sprite _staminaUnitEmpty;
+
+    [SerializeField] private Sprite[] _shardSprites;
 
     private void Start()
     {
@@ -53,9 +62,19 @@ public class UIManager : MonoBehaviour
             if (_staminaBar == null) ErrorAndDisable("Stamina Bar UI object in UIManager is missing!");
         }
 
+        if (_shardIndicator == null)
+        {
+            _shardIndicator = _canvas.transform.Find("Shard Indicator").gameObject;
+            if (_shardIndicator == null) ErrorAndDisable("Shard Indicator UI object in UIManager is missing!");
+        }
+
         _referenceStaminaUnit = _staminaBar.transform.GetChild(0).gameObject;
         _referenceStaminaUnit.SetActive(false);
         UpdateStaminaBar();
+
+        _shardIndicatorText = _shardIndicator.GetComponentInChildren<TextMeshProUGUI>();
+        _shardIndicatorImage = _shardIndicator.transform.Find("Shard Image").GetComponent<Image>();
+        UpdateShardIndicator();
     }
 
     private void Update()
@@ -114,6 +133,20 @@ public class UIManager : MonoBehaviour
             staminaUnit.SetActive(true);
             _staminaUnits.Add(staminaUnit);
             _staminaUnitsImages.Add(staminaUnit.GetComponent<Image>());
+        }
+    }
+
+    public void UpdateShardIndicator()
+    {
+        _shardIndicatorText.text = $"{_playerStamina.UpgradeProgress}/{_playerStamina.ShardsToUpgrade}";
+
+        if (_playerStamina.UpgradeProgress < _shardSprites.Length)
+        {
+            _shardIndicatorImage.sprite = _shardSprites[_playerStamina.UpgradeProgress];
+        }
+        else
+        {
+            _shardIndicatorImage.sprite = _staminaUnitFull;
         }
     }
 
