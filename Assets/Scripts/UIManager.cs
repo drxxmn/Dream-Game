@@ -31,7 +31,8 @@ public class UIManager : MonoBehaviour
     {
         if (_canvas == null)
         {
-            ErrorAndDisable("Canvas object in UIManager is missing!");
+            _canvas = transform.Find("Canvas").gameObject;
+            if (_canvas == null) ErrorAndDisable("Canvas object in UIManager is missing!");
         }
 
         if (_pauseMenu == null)
