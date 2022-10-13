@@ -378,6 +378,17 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 88b7b4420984f2a4ba2dcca47eac7f06, type: 3}
+--- !u!114 &754247665 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4112300866428281227, guid: 88b7b4420984f2a4ba2dcca47eac7f06, type: 3}
+  m_PrefabInstance: {fileID: 754247664}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dc6df6d053c130343b31cbad1b50568c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &941447957
 GameObject:
   m_ObjectHideFlags: 0
@@ -520,6 +531,94 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 135756642000475821, guid: 64dce48905ffd9b4293e595fa6941544, type: 3}
+      propertyPath: menuPressed.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 135756642000475821, guid: 64dce48905ffd9b4293e595fa6941544, type: 3}
+      propertyPath: menuPressed.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 135756642000475821, guid: 64dce48905ffd9b4293e595fa6941544, type: 3}
+      propertyPath: menuPressed.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 754247665}
+    - target: {fileID: 135756642000475821, guid: 64dce48905ffd9b4293e595fa6941544, type: 3}
+      propertyPath: menuPressed.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 135756642000475821, guid: 64dce48905ffd9b4293e595fa6941544, type: 3}
+      propertyPath: menuPressed.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: MenuToggle
+      objectReference: {fileID: 0}
+    - target: {fileID: 135756642000475821, guid: 64dce48905ffd9b4293e595fa6941544, type: 3}
+      propertyPath: menuPressed.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: UIManager, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 135756642000475821, guid: 64dce48905ffd9b4293e595fa6941544, type: 3}
+      propertyPath: menuPressed.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 2265957831456311591, guid: 64dce48905ffd9b4293e595fa6941544, type: 3}
+      propertyPath: MaxStamina
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2265957831456311591, guid: 64dce48905ffd9b4293e595fa6941544, type: 3}
+      propertyPath: _events.ProgressIncreased.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2265957831456311591, guid: 64dce48905ffd9b4293e595fa6941544, type: 3}
+      propertyPath: _events.MaxStaminaIncreased.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2265957831456311591, guid: 64dce48905ffd9b4293e595fa6941544, type: 3}
+      propertyPath: _events.ProgressIncreased.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2265957831456311591, guid: 64dce48905ffd9b4293e595fa6941544, type: 3}
+      propertyPath: _events.MaxStaminaIncreased.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2265957831456311591, guid: 64dce48905ffd9b4293e595fa6941544, type: 3}
+      propertyPath: _events.ProgressIncreased.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 754247665}
+    - target: {fileID: 2265957831456311591, guid: 64dce48905ffd9b4293e595fa6941544, type: 3}
+      propertyPath: _events.MaxStaminaIncreased.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 754247665}
+    - target: {fileID: 2265957831456311591, guid: 64dce48905ffd9b4293e595fa6941544, type: 3}
+      propertyPath: _events.ProgressIncreased.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2265957831456311591, guid: 64dce48905ffd9b4293e595fa6941544, type: 3}
+      propertyPath: _events.ProgressIncreased.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: UpdateShardIndicator
+      objectReference: {fileID: 0}
+    - target: {fileID: 2265957831456311591, guid: 64dce48905ffd9b4293e595fa6941544, type: 3}
+      propertyPath: _events.MaxStaminaIncreased.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2265957831456311591, guid: 64dce48905ffd9b4293e595fa6941544, type: 3}
+      propertyPath: _events.MaxStaminaIncreased.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: UpdateStaminaBar
+      objectReference: {fileID: 0}
+    - target: {fileID: 2265957831456311591, guid: 64dce48905ffd9b4293e595fa6941544, type: 3}
+      propertyPath: _events.ProgressIncreased.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: UIManager, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 2265957831456311591, guid: 64dce48905ffd9b4293e595fa6941544, type: 3}
+      propertyPath: _events.MaxStaminaIncreased.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: UIManager, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 2265957831456311591, guid: 64dce48905ffd9b4293e595fa6941544, type: 3}
+      propertyPath: _events.ProgressIncreased.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 2265957831456311591, guid: 64dce48905ffd9b4293e595fa6941544, type: 3}
+      propertyPath: _events.MaxStaminaIncreased.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     - target: {fileID: 3893294197879345259, guid: 64dce48905ffd9b4293e595fa6941544, type: 3}
       propertyPath: m_RootOrder
       value: 2
