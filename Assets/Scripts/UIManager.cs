@@ -29,6 +29,8 @@ public class UIManager : MonoBehaviour
     private GameObject _shardIndicator;
     private TextMeshProUGUI _shardIndicatorText;
     private Image _shardIndicatorImage;
+    private Animator _shardIndicatorAnimator;
+    [SerializeField] private float _shardIndicatorShowDuration = 2f;
 
     [Header("Stamina Unit Sprites")]
     [SerializeField] private Sprite _staminaUnitFull;
@@ -74,6 +76,7 @@ public class UIManager : MonoBehaviour
 
         _shardIndicatorText = _shardIndicator.GetComponentInChildren<TextMeshProUGUI>();
         _shardIndicatorImage = _shardIndicator.transform.Find("Shard Image").GetComponent<Image>();
+        _shardIndicatorAnimator = _shardIndicator.GetComponent<Animator>();
         UpdateShardIndicator();
     }
 
@@ -101,6 +104,7 @@ public class UIManager : MonoBehaviour
             if (child.gameObject.tag == "Yarn") child.gameObject.SetActive(false);
         }
         _pauseMenu.SetActive(true);
+        _shardIndicatorAnimator.SetBool("visible", true);
         Time.timeScale = 0;
     }
 
@@ -113,6 +117,7 @@ public class UIManager : MonoBehaviour
             if (child.gameObject.tag == "Yarn") child.gameObject.SetActive(true);
         }
         _pauseMenu.SetActive(false);
+        _shardIndicatorAnimator.SetBool("visible", false);
         Time.timeScale = 1;
     }
 
@@ -148,6 +153,18 @@ public class UIManager : MonoBehaviour
         {
             _shardIndicatorImage.sprite = _staminaUnitFull;
         }
+    }
+
+    public void ShowShardIndicator()
+    {
+        _shardIndicatorAnimator.SetBool("visible", true);
+        StartCoroutine(ShardIndicatorTimer());
+    }
+
+    private System.Collections.IEnumerator ShardIndicatorTimer()
+    {
+        yield return new WaitForSeconds(_shardIndicatorShowDuration);
+        _shardIndicatorAnimator.SetBool("visible", false);
     }
 
     private void ErrorAndDisable(string text)
