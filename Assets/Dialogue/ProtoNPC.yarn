@@ -1,0 +1,17 @@
+﻿title: ProtoNPC
+---
+<<if $spokenToBeatrice>>
+    Lilly: Hi! I'm Beatrice's twin sister, Lilly!
+<<else>>
+    Lilly: Hello there! I'm Lilly!
+    Lilly: Have you met my sister Beatrice yet?
+    Lilly: No?
+    Lilly: You really should go and find her.
+    Lilly: She knows a lot about this place.
+<<endif>>
+    Lilly: Err, you're not supposed to be here.
+    Lilly: This area is not finished.
+    Lilly: Besides, the mountain really is the place to be.
+    Lilly: Turn back down the road and take a left.
+    Lilly: Can't miss it really...
+===
