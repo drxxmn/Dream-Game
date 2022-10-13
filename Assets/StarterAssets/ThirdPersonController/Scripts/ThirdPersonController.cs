@@ -203,6 +203,14 @@ namespace StarterAssets
             Grounded = Physics.CheckSphere(spherePosition, GroundedRadius, GroundLayers,
                 QueryTriggerInteraction.Ignore);
 
+            // grounded becomes false if terrain slope is too steep
+            if (Grounded)
+            {
+                RaycastHit hit;
+                Physics.Raycast(transform.position, Vector3.down, out hit, 50f, GroundLayers);
+                if (hit.normal.y != 0 && hit.normal.y < .8f) Grounded = false;
+            }
+
             // update animator if using character
             if (_hasAnimator)
             {
