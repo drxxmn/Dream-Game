@@ -1,0 +1,36 @@
+﻿title: FirstNPC
+---
+<<declare $spokenToFirstNPC = false as bool>>
+<<declare $voicefragments = 0 as number>>
+<<if not $spokenToFirstNPC>>
+    FirstNPC: Hey! You there!
+    FirstNPC: You're new here right?
+    FirstNPC: I don't recognise you.
+    -> Player: ...
+    FirstNPC: Welcome!
+    -> Player: ...
+    FirstNPC: Uhm... do you understand what I am saying?
+    -> Player: *nod*
+    FirstNPC: Ah. Good.
+    FirstNPC: So, you can't speak?
+    FirstNPC: You must have lost your voice when arriving here.
+    FirstNPC: You see, ... <explains some more about world>
+    FirstNPC: Cya! Good luck!
+    <<set $spokenToFirstNPC to true>>
+<<elseif $voicefragments > 0>>
+    FirstNPC: Hey! It's you again!
+    FirstNPC: Got your voice back yet?
+    -> Player: Yes!
+    FirstNPC: That's great!
+    FirstNPC: You have a lovely voice!
+    -> Player: Thank you!
+    FirstNPC: Cya!
+<<else>>
+    FirstNPC: Hey! It's you again!
+    FirstNPC: Got your voice back yet?
+    -> Player: ...
+    FirstNPC: Guess not. Bummer.
+    FirstNPC: Cya! Good luck!
+    <<set $voicefragments += 1>>
+<<endif>>
+===
