@@ -1,36 +1,43 @@
 ﻿title: FirstNPC
 ---
-<<declare $spokenToFirstNPC = false as bool>>
+<<declare $spokenToBeatrice = false as bool>>
 <<declare $voicefragments = 0 as number>>
-<<if not $spokenToFirstNPC>>
-    FirstNPC: Hey! You there!
-    FirstNPC: You're new here right?
-    FirstNPC: I don't recognise you.
+<<if not $spokenToBeatrice>>
+    Beatrice: Hey! You there!
+    Beatrice: You're new here right?
+    Beatrice: I don't recognise you.
     -> Player: ...
-    FirstNPC: Welcome!
+    Beatrice: Welcome!
     -> Player: ...
-    FirstNPC: Uhm... do you understand what I am saying?
+    Beatrice: Uhm... do you understand what I am saying?
     -> Player: *nod*
-    FirstNPC: Ah. Good.
-    FirstNPC: So, you can't speak?
-    FirstNPC: You must have lost your voice when arriving here.
-    FirstNPC: You see, ... <explains some more about world>
-    FirstNPC: Cya! Good luck!
-    <<set $spokenToFirstNPC to true>>
+    Beatrice: Ah. Good.
+    Beatrice: So, you can't speak?
+    Beatrice: You must have lost your voice when arriving here.
+    Beatrice: You see, every person who arrives in this world loses something dear to them.
+    Beatrice: To wake up again, you have to recover what you have lost.
+    Beatrice: And convince the Sandman of course. He's in charge of things around here.
+    Beatrice: If you take a look around, you can probaby spot Soul Shards floating around.
+    Beatrice: Soul Shards are highly personal. I'm not able to see yours.
+    Beatrice: Collect them to restore your voice.
+    Beatrice: You seem to be able to use your voice to jump higher and float through the air!
+    Beatrice: Use the 'F' key to toggle your floating ability!
+    Beatrice: Cya! Good luck!
+    <<set $spokenToBeatrice to true>>
 <<elseif $voicefragments > 0>>
-    FirstNPC: Hey! It's you again!
-    FirstNPC: Got your voice back yet?
+    Beatrice: Hey! It's you again!
+    Beatrice: Got your voice back yet?
     -> Player: Yes!
-    FirstNPC: That's great!
-    FirstNPC: You have a lovely voice!
+    Beatrice: That's great!
+    Beatrice: You have a lovely voice!
     -> Player: Thank you!
-    FirstNPC: Cya!
+    Beatrice: Cya!
 <<else>>
-    FirstNPC: Hey! It's you again!
-    FirstNPC: Got your voice back yet?
+    Beatrice: Hey! It's you again!
+    Beatrice: Got your voice back yet?
     -> Player: ...
-    FirstNPC: Guess not. Bummer.
-    FirstNPC: Cya! Good luck!
-    <<set $voicefragments += 1>>
+    Beatrice: Guess not. Bummer.
+    Beatrice: Remember, collect Soul Shards and use 'F' to toggle your floating ability!
+    Beatrice: Cya! Good luck!
 <<endif>>
 ===
