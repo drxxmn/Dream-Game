@@ -1194,6 +1194,9 @@ MonoBehaviour:
   jump: 0
   sprint: 0
   playerFloat: 0
+  menuPressed:
+    m_PersistentCalls:
+      m_Calls: []
   analogMovement: 0
   cursorLocked: 1
   cursorInputForLook: 1
@@ -1308,7 +1311,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   MaxStamina: 1
-  RegenerationRate: 0.5
+  RegenerationRate: 1
+  ShardsToUpgrade: 4
+  _events:
+    ProgressIncreased:
+      m_PersistentCalls:
+        m_Calls: []
+    MaxStaminaIncreased:
+      m_PersistentCalls:
+        m_Calls: []
+    StaminaEmpty:
+      m_PersistentCalls:
+        m_Calls: []
+    StaminaFull:
+      m_PersistentCalls:
+        m_Calls: []
 --- !u!1 &4523139366846529165
 GameObject:
   m_ObjectHideFlags: 0
