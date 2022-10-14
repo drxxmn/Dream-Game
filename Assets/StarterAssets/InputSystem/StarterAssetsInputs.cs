@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.Events;
 #if ENABLE_INPUT_SYSTEM && STARTER_ASSETS_PACKAGES_CHECKED
 using UnityEngine.InputSystem;
 #endif
@@ -12,6 +13,8 @@ namespace StarterAssets
 		public Vector2 look;
 		public bool jump;
 		public bool sprint;
+		public bool playerFloat;
+		public UnityEvent menuPressed = new UnityEvent();
 
 		[Header("Movement Settings")]
 		public bool analogMovement;
@@ -43,6 +46,16 @@ namespace StarterAssets
 		{
 			SprintInput(value.isPressed);
 		}
+
+		public void OnFloat(InputValue value)
+		{
+			FloatInput(value.isPressed);
+		}
+
+		public void OnMenu(InputValue value)
+		{
+			menuPressed.Invoke();
+		}
 #endif
 
 
@@ -64,6 +77,11 @@ namespace StarterAssets
 		public void SprintInput(bool newSprintState)
 		{
 			sprint = newSprintState;
+		}
+
+		public void FloatInput(bool newFloatState)
+		{
+			playerFloat = newFloatState;
 		}
 
 		private void OnApplicationFocus(bool hasFocus)

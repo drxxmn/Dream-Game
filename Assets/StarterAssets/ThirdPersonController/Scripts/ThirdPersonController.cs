@@ -46,6 +46,14 @@ namespace StarterAssets
         [Tooltip("Time required to pass before entering the fall state. Useful for walking down stairs")]
         public float FallTimeout = 0.15f;
 
+        [Header("Float behaviour")]
+        [Tooltip("Character floating mode enabled or not")]
+        public bool FloatMode = false;
+
+        [Range(0, .5f)]
+        [Tooltip("Reduction in gravity when floating (lower = less gravity/slower fall")]
+        public float GravityReduction = 0.1f;
+
         [Header("Player Grounded")]
         [Tooltip("If the character is grounded or not. Not part of the CharacterController built in grounded check")]
         public bool Grounded = true;
@@ -105,6 +113,7 @@ namespace StarterAssets
         private CharacterController _controller;
         private StarterAssetsInputs _input;
         private GameObject _mainCamera;
+        private PlayerStamina _stamina;
 
         private const float _threshold = 0.01f;
 
@@ -139,6 +148,7 @@ namespace StarterAssets
             _hasAnimator = TryGetComponent(out _animator);
             _controller = GetComponent<CharacterController>();
             _input = GetComponent<StarterAssetsInputs>();
+            _stamina = GetComponent<PlayerStamina>();
 #if ENABLE_INPUT_SYSTEM && STARTER_ASSETS_PACKAGES_CHECKED
             _playerInput = GetComponent<PlayerInput>();
 #else
@@ -156,6 +166,7 @@ namespace StarterAssets
         {
             _hasAnimator = TryGetComponent(out _animator);
 
+            FloatCheck();
             JumpAndGravity();
             GroundedCheck();
             Move();
@@ -175,6 +186,15 @@ namespace StarterAssets
             _animIDMotionSpeed = Animator.StringToHash("MotionSpeed");
         }
 
+        private void FloatCheck()
+        {
+            if (_input.playerFloat)
+            {
+                _input.playerFloat = false;
+                FloatMode = !FloatMode;
+            }
+        }
+
         private void GroundedCheck()
         {
             // set sphere position, with offset
@@ -182,6 +202,14 @@ namespace StarterAssets
                 transform.position.z);
             Grounded = Physics.CheckSphere(spherePosition, GroundedRadius, GroundLayers,
                 QueryTriggerInteraction.Ignore);
+
+            // grounded becomes false if terrain slope is too steep
+            if (Grounded)
+            {
+                RaycastHit hit;
+                Physics.Raycast(transform.position, Vector3.down, out hit, 50f, GroundLayers);
+                if (hit.normal.y != 0 && hit.normal.y < .8f) Grounded = false;
+            }
 
             // update animator if using character
             if (_hasAnimator)
@@ -302,14 +330,8 @@ namespace StarterAssets
                 // Jump
                 if (_input.jump && _jumpTimeoutDelta <= 0.0f)
                 {
-                    // the square root of H * -2 * G = how much velocity needed to reach desired height
-                    _verticalVelocity = Mathf.Sqrt(JumpHeight * -2f * Gravity);
-
-                    // update animator if using character
-                    if (_hasAnimator)
-                    {
-                        _animator.SetBool(_animIDJump, true);
-                    }
+                    _input.jump = false;
+                    Jump();
                 }
 
                 // jump timeout
@@ -335,6 +357,13 @@ namespace StarterAssets
                     {
                         _animator.SetBool(_animIDFreeFall, true);
                     }
+
+                    // Double jump
+                    if (_input.jump && _stamina.CurStamina >= 1f)
+                    {
+                        Jump();
+                        _stamina.ReduceCurStamina(1f);
+                    }
                 }
 
                 // if we are not grounded, do not jump
@@ -344,7 +373,26 @@ namespace StarterAssets
             // apply gravity over time if under terminal (multiply by delta time twice to linearly speed up over time)
             if (_verticalVelocity < _terminalVelocity)
             {
-                _verticalVelocity += Gravity * Time.deltaTime;
+                if (FloatMode && _verticalVelocity < 0.0f)
+                {
+                    _verticalVelocity = Gravity * GravityReduction;
+                }
+                else
+                {
+                    _verticalVelocity += Gravity * Time.deltaTime;
+                }
+            }
+        }
+
+        private void Jump()
+        {
+            // the square root of H * -2 * G = how much velocity needed to reach desired height
+            _verticalVelocity = Mathf.Sqrt(JumpHeight * -2f * Gravity);
+
+            // update animator if using character
+            if (_hasAnimator)
+            {
+                _animator.SetBool(_animIDJump, true);
             }
         }
 
