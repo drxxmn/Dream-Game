@@ -7139,7 +7139,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2265957831456311591, guid: 64dce48905ffd9b4293e595fa6941544, type: 3}
       propertyPath: MaxStamina
-      value: 5
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2265957831456311591, guid: 64dce48905ffd9b4293e595fa6941544, type: 3}
       propertyPath: _events.ProgressIncreased.m_PersistentCalls.m_Calls.Array.size
