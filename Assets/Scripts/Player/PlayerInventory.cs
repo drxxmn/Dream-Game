@@ -5,6 +5,8 @@ using Yarn.Unity;
 
 public class PlayerInventory : MonoBehaviour
 {
+    [SerializeField] private InMemoryVariableStorage _variableStorage;
+
     [System.Serializable]
     private class Events
     {
@@ -12,33 +14,35 @@ public class PlayerInventory : MonoBehaviour
         public UnityEvent ItemRemoved = new UnityEvent();
     }
     [SerializeField] private Events _events;
-    [SerializeField] private List<InventoryItem> items;
+
+    [SerializeField] private List<InventoryItem> _items;
 
     public bool ContainsItem(int id)
     {
-        if (items.Find(x => x.Id == id) != null) return true;
+        if (_items.Find(x => x.Id == id) != null) return true;
         else return false;
     }
 
     public int ContainsItemAmount(int id, int amount)
     {
-        InventoryItem item = items.Find(x => x.Id == id);
+        InventoryItem item = _items.Find(x => x.Id == id);
         if (item != null) return item.Amount;
         else return 0;
     }
 
     public InventoryItem GetItem(int id)
     {
-        return items.Find(x => x.Id == id);
+        return _items.Find(x => x.Id == id);
     }
 
     [YarnCommand("add_item")]
     public bool AddItem(int id, int amount = 1)
     {
-        InventoryItem item = items.Find(x => x.Id == id);
+        InventoryItem item = _items.Find(x => x.Id == id);
         if (item != null)
         {
             item.Amount += amount;
+            SetInVariableStorage(item.Name, item.Amount);
             _events.ItemAdded.Invoke();
             return true;
         }
@@ -48,13 +52,23 @@ public class PlayerInventory : MonoBehaviour
     [YarnCommand("remove_item")]
     public bool RemoveItem(int id, int amount = 1)
     {
-        InventoryItem item = items.Find(x => x.Id == id);
+        InventoryItem item = _items.Find(x => x.Id == id);
         if (item != null)
         {
             item.Amount = Mathf.Max(item.Amount - amount, 0);
+            SetInVariableStorage(item.Name, item.Amount);
             _events.ItemRemoved.Invoke();
             return true;
         }
         else return false;
+    }
+
+    private void SetInVariableStorage(string name, int totalAmount)
+    {
+        string variableName = "item_" + name;
+        if (_variableStorage.Contains(variableName))
+        {
+            _variableStorage.SetValue(variableName, totalAmount);
+        }
     }
 }
