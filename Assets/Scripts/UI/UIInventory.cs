@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class UIInventory : MonoBehaviour
 {
@@ -8,7 +9,7 @@ public class UIInventory : MonoBehaviour
     [SerializeField] GameObject _panel;
     [SerializeField] GameObject _referenceItemObject;
 
-    List<InventoryItem> _itemsDisplayed = new();
+    List<GameObject> _itemsDisplayed = new();
 
     private void Start()
     {
@@ -19,16 +20,13 @@ public class UIInventory : MonoBehaviour
 
     public void UpdatePanel()
     {
+        foreach (GameObject item in _itemsDisplayed) Destroy(item);
+        _itemsDisplayed = new List<GameObject>();
+
         foreach (InventoryItem item in _inventory.GetAllItems())
         {
-            if (item.Amount == 0)
-            {
-                if (_itemsDisplayed.Contains(item))
-                {
-                    RemoveFromPanel(item);
-                }
-            }
-            else AddToPanel(item);
+            if (item.Amount == 0) continue;
+            AddToPanel(item);
         }
     }
 
@@ -39,13 +37,13 @@ public class UIInventory : MonoBehaviour
         newItem.transform.SetParent(_panel.transform, false);
         newItem.GetComponent<Image>().sprite = item.Icon;
         newItem.SetActive(true);
-        _itemsDisplayed.Add(item);
-    }
+        _itemsDisplayed.Add(newItem);
 
-    private void RemoveFromPanel(InventoryItem item)
-    {
-        GameObject toRemove = _panel.transform.Find(item.Id.ToString()).gameObject;
-        Destroy(toRemove);
-        _itemsDisplayed.Remove(item);
+        if (item.Amount > 1)
+        {
+            GameObject counter = newItem.transform.GetChild(0).gameObject;
+            counter.GetComponent<TextMeshProUGUI>().text = item.Amount.ToString();
+            counter.SetActive(true);
+        }
     }
 }
