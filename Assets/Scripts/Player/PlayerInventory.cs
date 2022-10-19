@@ -42,7 +42,7 @@ public class PlayerInventory : MonoBehaviour
         if (item != null)
         {
             item.Amount += amount;
-            SetInVariableStorage(item.Name, item.Amount);
+            SetInVariableStorage(id, item.Amount);
             _events.ItemAdded.Invoke();
             return true;
         }
@@ -56,19 +56,16 @@ public class PlayerInventory : MonoBehaviour
         if (item != null)
         {
             item.Amount = Mathf.Max(item.Amount - amount, 0);
-            SetInVariableStorage(item.Name, item.Amount);
+            SetInVariableStorage(id, item.Amount);
             _events.ItemRemoved.Invoke();
             return true;
         }
         else return false;
     }
 
-    private void SetInVariableStorage(string name, int totalAmount)
+    private void SetInVariableStorage(int id, int totalAmount)
     {
-        string variableName = "item_" + name;
-        if (_variableStorage.Contains(variableName))
-        {
-            _variableStorage.SetValue(variableName, totalAmount);
-        }
+        string variableName = "$item_" + id.ToString();
+        _variableStorage.SetValue(variableName, totalAmount);
     }
 }
