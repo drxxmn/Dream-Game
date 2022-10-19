@@ -40,6 +40,11 @@ public class SpeechBubbleLineView : DialogueViewBase
     // called (which happens when UserRequestedViewAdvancement is called.)
     [SerializeField] private bool waitForInput;
 
+    [Header("Pixel Filter")]
+    [SerializeField] private bool pixelFilterEnabled;
+    [SerializeField] private float pixelFilterWidth;
+    [SerializeField] private float pixelFilterHeight;
+
     // The current coroutine that's playing out a scaling animation. When this
     // is not null, we're in the middle of an animation.
     Coroutine currentAnimation;
@@ -287,7 +292,17 @@ public class SpeechBubbleLineView : DialogueViewBase
             Vector2 screenPoint;
             Vector3 characterPos = characterSpeaking.transform.position;
             screenPoint = Camera.main.WorldToScreenPoint(characterPos + new Vector3(0, yOffset, 0));
-            GetComponent<RectTransform>().position = screenPoint;
+
+            // When the pixel filter is enabled, the camera view gets resized.
+            // The screenpoint therefore has to be multiplied by a scale 
+            // factor, otherwise its position is not correct.
+            if (pixelFilterEnabled)
+            {
+                screenPoint.x *= (Screen.width / pixelFilterWidth);
+                screenPoint.y *= (Screen.height / pixelFilterHeight);
+            }
+
+            container.position = screenPoint;
         }
     }
 }

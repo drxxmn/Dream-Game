@@ -834,6 +834,9 @@ MonoBehaviour:
   text: {fileID: 2883902635436031346}
   container: {fileID: 2883902635712239305}
   waitForInput: 1
+  pixelFilterEnabled: 1
+  pixelFilterWidth: 576
+  pixelFilterHeight: 324
 --- !u!114 &2883902635712239311
 MonoBehaviour:
   m_ObjectHideFlags: 0
