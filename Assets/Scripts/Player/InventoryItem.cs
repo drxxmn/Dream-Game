@@ -9,4 +9,9 @@ public class InventoryItem
     public string Description;
     public int Amount;
     public Sprite Icon;
+
+    public override string ToString()
+    {
+        return Name;
+    }
 }

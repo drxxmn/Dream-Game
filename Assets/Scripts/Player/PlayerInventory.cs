@@ -35,6 +35,11 @@ public class PlayerInventory : MonoBehaviour
         return _items.Find(x => x.Id == id);
     }
 
+    public InventoryItem[] GetAllItems()
+    {
+        return _items.ToArray();
+    }
+
     [YarnCommand("add_item")]
     public bool AddItem(int id, int amount = 1)
     {
