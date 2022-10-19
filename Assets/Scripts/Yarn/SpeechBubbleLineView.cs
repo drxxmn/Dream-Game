@@ -298,8 +298,7 @@ public class SpeechBubbleLineView : DialogueViewBase
             // factor, otherwise its position is not correct.
             if (pixelFilterEnabled)
             {
-                screenPoint.x *= (Screen.width / pixelFilterWidth);
-                screenPoint.y *= (Screen.height / pixelFilterHeight);
+                screenPoint *= (Screen.width / pixelFilterWidth);
             }
 
             container.position = screenPoint;
