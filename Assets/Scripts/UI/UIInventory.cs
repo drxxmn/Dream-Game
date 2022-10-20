@@ -7,14 +7,13 @@ public class UIInventory : MonoBehaviour
 {
     [SerializeField] PlayerInventory _inventory;
     [SerializeField] GameObject _panel;
-    [SerializeField] GameObject _referenceItemObject;
+    [SerializeField] GameObject _itemPrefab;
 
     List<GameObject> _itemsDisplayed = new();
 
     private void Start()
     {
         if (_inventory == null) _inventory = FindObjectOfType<PlayerInventory>();
-        _referenceItemObject.SetActive(false);
         UpdatePanel();
     }
 
@@ -32,11 +31,10 @@ public class UIInventory : MonoBehaviour
 
     private void AddToPanel(InventoryItem item)
     {
-        GameObject newItem = GameObject.Instantiate(_referenceItemObject);
+        GameObject newItem = GameObject.Instantiate(_itemPrefab);
         newItem.name = item.Id.ToString();
         newItem.transform.SetParent(_panel.transform, false);
         newItem.GetComponent<Image>().sprite = item.Icon;
-        newItem.SetActive(true);
         _itemsDisplayed.Add(newItem);
 
         if (item.Amount > 1)

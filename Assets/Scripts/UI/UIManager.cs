@@ -20,7 +20,7 @@ public class UIManager : MonoBehaviour
     [SerializeField]
     [Tooltip("Put your Stamina Bar gameobject here")]
     private GameObject _staminaBar;
-    private GameObject _referenceStaminaUnit;
+    [SerializeField] private GameObject _staminaUnitPrefab;
     private List<GameObject> _staminaUnits = new List<GameObject>();
     private List<Image> _staminaUnitsImages = new List<Image>();
 
@@ -70,8 +70,6 @@ public class UIManager : MonoBehaviour
             if (_shardIndicator == null) ErrorAndDisable("Shard Indicator UI object in UIManager is missing!");
         }
 
-        _referenceStaminaUnit = _staminaBar.transform.GetChild(0).gameObject;
-        _referenceStaminaUnit.SetActive(false);
         UpdateStaminaBar();
 
         _shardIndicatorText = _shardIndicator.GetComponentInChildren<TextMeshProUGUI>();
@@ -135,9 +133,8 @@ public class UIManager : MonoBehaviour
 
         for (int i = 0; i < unitsToAdd; i++)
         {
-            GameObject staminaUnit = GameObject.Instantiate(_referenceStaminaUnit);
+            GameObject staminaUnit = GameObject.Instantiate(_staminaUnitPrefab);
             staminaUnit.transform.SetParent(_staminaBar.transform, false);
-            staminaUnit.SetActive(true);
             _staminaUnits.Add(staminaUnit);
             _staminaUnitsImages.Add(staminaUnit.GetComponent<Image>());
         }

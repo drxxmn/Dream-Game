@@ -1186,6 +1186,7 @@ MonoBehaviour:
   _pauseMenu: {fileID: 0}
   _playerStamina: {fileID: 0}
   _staminaBar: {fileID: 0}
+  _staminaUnitPrefab: {fileID: 8076629113307822657, guid: 2850ac9deb4286748a887a14c0732dd4, type: 3}
   _shardIndicator: {fileID: 0}
   _shardIndicatorShowDuration: 4
   _staminaUnitFull: {fileID: 21300000, guid: 25e762eb8f975d448835e87530f3e0d0, type: 3}
