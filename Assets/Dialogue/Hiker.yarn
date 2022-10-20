@@ -1,0 +1,32 @@
+﻿title: Hiker
+---
+<<declare $distanceTraveled = 0 as number>>
+<<declare $visitedWidowsPeak = false as bool>>
+<<declare $receivedGiftFromHiker = false as bool>>
+Hiker: Hohoho, boy do I love me some hikin'.
+Hiker: How 'bout you little fellow?
+Hiker: Are you a fan of hiking as well?
+Hiker: 'Course you are!
+Hiker: I can see that you've already hiked [bold]{round_places($distanceTraveled / 1000, 1)} kilometers![/bold]
+<<if $receivedGiftFromHiker>>
+    Hiker: Still going strong I see.
+    Hiker: Please keep it up.
+    Hiker: I'll be rooting for ya!
+<<elseif $distanceTraveled > 2000>>
+    Hiker: Wow! That's some serious hikin'!
+    Hiker: Here, have some more soul.
+    <<increase_stamina Player 6>>
+    <<set $receivedGiftFromHiker to true>>
+    Hiker: It'll help you hike even further!
+<<else>>
+    Hiker: Hohoho, it's a good start, for sure.
+    Hiker: Come back to me when you've got some more experience under you belt.
+<<endif>>
+<<if $visitedWidowsPeak>>
+    Hiker: Oh my, you've visited Widows's Peak, haven't you!
+    Hiker: I can see it in your eyes.
+    Hiker: Beautiful place that is.
+    Hiker: You'll never forget it.
+<<endif>>
+Hiker: Take care now!
+===
