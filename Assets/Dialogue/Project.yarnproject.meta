@@ -11,6 +11,7 @@ ScriptedImporter:
   sourceScripts:
   - {fileID: 6391573757903218779, guid: 019056c1490736748a25542413a14c75, type: 3}
   - {fileID: 6391573757903218779, guid: c9d064cc92aadcd4f8883834b373e6b6, type: 3}
+  - {fileID: 6391573757903218779, guid: 247010cc2a8bfe24fb3f48c79f95ce53, type: 3}
   compileErrors: []
   serializedDeclarations:
   - name: $spokenToBeatrice

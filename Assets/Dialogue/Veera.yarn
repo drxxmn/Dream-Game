@@ -1,0 +1,55 @@
+﻿title: Veera
+---
+<<declare $item_1 = 0 as number>>
+<<declare $spokenToVeera = false as bool>>
+<<declare $foundRupert = false as bool>>
+<<if not $spokenToVeera>>
+    Veera: *sniff*
+    Player: Hi there, what's the matter?
+    Veera: I've lost Rupert.
+    Player: Is Rupert your friend?
+    Veera: Yes. Well, sort of.
+    Veera: They are my stuffed animal.
+    Veera: They are very important to me.
+    Veera: I don't know what to do without them.
+    Veera: *sob*
+    Player: Hey now, it'll be alright.
+    Veera: Only if I find Rupert again.
+    Veera: Would you keep an eye out for them?
+    Veera: And bring them back to me?
+    Veera: They are a brown rabbit, with long ears.
+    Veera: And they are very soft and fluffy.
+    // Player choice here later maybe
+    Player: Of course.
+    Player: Don't you worry.
+    Player: You'll have them back in no time!
+    Veera: Thank you. *sniff*
+    <<set $spokenToVeera to true>>
+<<elseif $item_1 > 0>>
+    Veera: Hi. Have you found my Rupert?
+    Player: Yes, here they are!
+    <<remove_item Player 1>>
+    Player: Good as new.
+    Veera: Oh, thank you!
+    Veera: Oh, my Rupert.
+    Veera: I've missed you so much.
+    Veera: I'll never let you go again.
+    Veera: Thanks again for bringing them back.
+    Veera: Here is something for your trouble.
+    Veera: It's the least I can do.
+    <<increase_stamina Player 4>>
+    Player: Wow, thank you!
+    Veera: Farewell.
+    <<set $foundRupert to true>>
+<<elseif $foundRupert>>
+    Veera: Thank you again for finding my Rupert.
+    Veera: Now I can return to the waking world.
+    Veera: In due time. *giggle*
+<<else>>
+    Veera: Hi. Have you found my Rupert?
+    Player: No, I haven't found them yet.
+    Player: Sorry.
+    Veera: It's okay.
+    Veera: Please keep looking for them.
+<<endif>>
+===
