@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
@@ -5,7 +6,7 @@ using Yarn.Unity;
 
 public class PlayerInventory : MonoBehaviour
 {
-    [SerializeField] private InMemoryVariableStorage _variableStorage;
+    [SerializeField] private VariableStorageBehaviour _variableStorage;
 
     [System.Serializable]
     private class Events
@@ -66,6 +67,27 @@ public class PlayerInventory : MonoBehaviour
             return true;
         }
         else return false;
+    }
+
+    [YarnCommand("update_inventory")]
+    private void SyncVariableStorage()
+    {
+        (Dictionary<string, float>, Dictionary<string, string>, Dictionary<string, bool>) allVariables = _variableStorage.GetAllVariables();
+        foreach (string key in allVariables.Item1.Keys)
+        {
+            if (!key.StartsWith("$item_")) continue;
+
+            int id = Int32.Parse(key.Split("_")[1]);
+            int amount = Mathf.FloorToInt(allVariables.Item1[key]);
+            InventoryItem itemInInventory = _items.Find(x => x.Id == id);
+
+            if (itemInInventory.Amount == amount) continue;
+
+            bool add = amount > itemInInventory.Amount ? true : false;
+            itemInInventory.Amount = amount;
+            if (add) _events.ItemAdded.Invoke();
+            else _events.ItemRemoved.Invoke();
+        }
     }
 
     private void SetInVariableStorage(int id, int totalAmount)
