@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using Yarn.Unity;
 #if ENABLE_INPUT_SYSTEM && STARTER_ASSETS_PACKAGES_CHECKED
 using UnityEngine.InputSystem;
 #endif
@@ -14,6 +15,8 @@ namespace StarterAssets
 #endif
     public class ThirdPersonController : MonoBehaviour
     {
+        [SerializeField] private VariableStorageBehaviour _variableStorage;
+
         [Header("Player")]
         [Tooltip("Move speed of the character in m/s")]
         public float MoveSpeed = 2.0f;
@@ -241,6 +244,7 @@ namespace StarterAssets
 
         private void Move()
         {
+            Vector3 startingPosition = new Vector3(transform.position.x, 0, transform.position.z);
             // set target speed based on move speed, sprint speed and if sprint is pressed
             float targetSpeed = _input.sprint ? SprintSpeed : MoveSpeed;
 
@@ -298,6 +302,10 @@ namespace StarterAssets
             // move the player
             _controller.Move(targetDirection.normalized * (_speed * Time.deltaTime) +
                              new Vector3(0.0f, _verticalVelocity, 0.0f) * Time.deltaTime);
+
+            Vector3 endPosition = new Vector3(transform.position.x, 0, transform.position.z);
+            float distanceTraveled = Vector3.Distance(startingPosition, endPosition);
+            IncreaseInVariableStorage("$distanceTraveled", distanceTraveled);
 
             // update animator if using character
             if (_hasAnimator)
@@ -363,6 +371,7 @@ namespace StarterAssets
                     {
                         Jump();
                         _stamina.ReduceCurStamina(1f);
+                        IncreaseInVariableStorage("$timesDoubleJumped", 1);
                     }
                 }
 
@@ -394,6 +403,8 @@ namespace StarterAssets
             {
                 _animator.SetBool(_animIDJump, true);
             }
+
+            IncreaseInVariableStorage("$timesJumped", 1);
         }
 
         private static float ClampAngle(float lfAngle, float lfMin, float lfMax)
@@ -434,6 +445,17 @@ namespace StarterAssets
             if (animationEvent.animatorClipInfo.weight > 0.5f)
             {
                 AudioSource.PlayClipAtPoint(LandingAudioClip, transform.TransformPoint(_controller.center), FootstepAudioVolume);
+            }
+        }
+
+        private void IncreaseInVariableStorage(string variableName, float amount)
+        {
+            if (_variableStorage != null)
+            {
+                float oldAmount = 0;
+                _variableStorage.TryGetValue<float>(variableName, out oldAmount);
+                float newAmount = oldAmount + amount;
+                _variableStorage.SetValue(variableName, newAmount);
             }
         }
     }
