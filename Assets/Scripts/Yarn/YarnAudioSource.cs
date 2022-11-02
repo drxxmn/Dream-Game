@@ -2,7 +2,7 @@ using UnityEngine;
 using Yarn.Unity;
 
 [RequireComponent(typeof(AudioSource))]
-public class UISFX : MonoBehaviour
+public class YarnAudioSource : MonoBehaviour
 {
     private AudioSource _audioSource;
 
@@ -11,7 +11,7 @@ public class UISFX : MonoBehaviour
         _audioSource = GetComponent<AudioSource>();
     }
 
-    [YarnCommand("play_clip")]
+    [YarnCommand("play_audioclip")]
     public void PlayClip(string clipName)
     {
         AudioClip clip = Resources.Load<AudioClip>("SFX/" + clipName);

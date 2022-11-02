@@ -1005,7 +1005,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1136947407290133517}
   - component: {fileID: 8501872758843553295}
-  - component: {fileID: 5710355946191771274}
+  - component: {fileID: 2562967566818854543}
   m_Layer: 0
   m_Name: SFX
   m_TagString: Untagged
@@ -1124,7 +1124,7 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!114 &5710355946191771274
+--- !u!114 &2562967566818854543
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1133,7 +1133,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 4309283434987222471}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 88da8492cd006bf448760ca82a9a4fb8, type: 3}
+  m_Script: {fileID: 11500000, guid: 9c10e6447ebb6e14ca148708d46a9ce7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &4897474954724553803
