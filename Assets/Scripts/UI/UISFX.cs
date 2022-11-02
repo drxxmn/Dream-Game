@@ -1,12 +1,9 @@
 using UnityEngine;
+using Yarn.Unity;
 
 [RequireComponent(typeof(AudioSource))]
 public class UISFX : MonoBehaviour
 {
-    public AudioClip OnClickClip;
-    public AudioClip PauseMenuOpenClip;
-    public AudioClip PauseMenuCloseClip;
-
     private AudioSource _audioSource;
 
     void Start()
@@ -14,18 +11,15 @@ public class UISFX : MonoBehaviour
         _audioSource = GetComponent<AudioSource>();
     }
 
-    public void PlayOnClick()
+    [YarnCommand("play_clip")]
+    public void PlayClip(string clipName)
     {
-        _audioSource.PlayOneShot(OnClickClip);
-    }
-
-    public void PlayPauseMenuOpen()
-    {
-        _audioSource.PlayOneShot(PauseMenuOpenClip);
-    }
-
-    public void PlayPauseMenuClose()
-    {
-        _audioSource.PlayOneShot(PauseMenuCloseClip);
+        AudioClip clip = Resources.Load<AudioClip>("SFX/" + clipName);
+        if (clip == null)
+        {
+            Debug.LogError($"Audioclip {clipName} not found!");
+            return;
+        }
+        else _audioSource.PlayOneShot(clip);
     }
 }

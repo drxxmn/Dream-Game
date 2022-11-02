@@ -14,6 +14,9 @@ public class PlayerInventory : MonoBehaviour
         public UnityEvent ItemAdded = new UnityEvent();
         public UnityEvent ItemRemoved = new UnityEvent();
     }
+    [SerializeField] private AudioSource _UISFXAudioSource;
+    [SerializeField] private AudioClip _addItemClip;
+    [SerializeField] private AudioClip _removeItemClip;
     [SerializeField] private Events _events;
 
     [SerializeField] private List<InventoryItem> _items;
@@ -50,6 +53,7 @@ public class PlayerInventory : MonoBehaviour
             item.Amount += amount;
             SetInVariableStorage(id, item.Amount);
             _events.ItemAdded.Invoke();
+            _UISFXAudioSource.PlayOneShot(_addItemClip);
             return true;
         }
         else return false;
@@ -64,6 +68,7 @@ public class PlayerInventory : MonoBehaviour
             item.Amount = Mathf.Max(item.Amount - amount, 0);
             SetInVariableStorage(id, item.Amount);
             _events.ItemRemoved.Invoke();
+            _UISFXAudioSource.PlayOneShot(_removeItemClip);
             return true;
         }
         else return false;

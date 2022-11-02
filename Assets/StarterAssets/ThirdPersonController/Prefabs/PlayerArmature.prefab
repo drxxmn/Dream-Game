@@ -1127,6 +1127,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 26e54e5a728a9234ab24fcf1460ed8a2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _variableStorage: {fileID: 0}
   MoveSpeed: 2
   SprintSpeed: 5.335
   RotationSmoothTime: 0.12
@@ -1339,6 +1340,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3f452f42ddbf6f9429f8a5e724cd81e6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _variableStorage: {fileID: 0}
+  _UISFXAudioSource: {fileID: 0}
+  _addItemClip: {fileID: 8300000, guid: 1ab384600ccb7b94d8dd82d44e506a0a, type: 3}
+  _removeItemClip: {fileID: 8300000, guid: 60fdf931cab4e6546ad6f4aa0ab64a44, type: 3}
   _events:
     ItemAdded:
       m_PersistentCalls:
@@ -1346,7 +1351,7 @@ MonoBehaviour:
     ItemRemoved:
       m_PersistentCalls:
         m_Calls: []
-  items: []
+  _items: []
 --- !u!1 &4523139366846529165
 GameObject:
   m_ObjectHideFlags: 0
