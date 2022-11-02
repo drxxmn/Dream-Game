@@ -61,6 +61,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Id: 0
   Amount: 1
+  PickupClip: {fileID: 8300000, guid: 1ab384600ccb7b94d8dd82d44e506a0a, type: 3}
 --- !u!1 &8057880397653832315
 GameObject:
   m_ObjectHideFlags: 0
