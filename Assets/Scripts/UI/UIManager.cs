@@ -31,6 +31,7 @@ public class UIManager : MonoBehaviour
     private Image _shardIndicatorImage;
     private Animator _shardIndicatorAnimator;
     [SerializeField] private float _shardIndicatorShowDuration = 2f;
+    [SerializeField] private UISFX _UISFX;
 
     [Header("Stamina Unit Sprites")]
     [SerializeField] private Sprite _staminaUnitFull;
@@ -106,6 +107,7 @@ public class UIManager : MonoBehaviour
         _pauseMenu.SetActive(true);
         _shardIndicatorAnimator.SetBool("visible", true);
         Time.timeScale = 0;
+        _UISFX.PlayPauseMenuOpen();
     }
 
     public void ResumeGame()
@@ -119,6 +121,7 @@ public class UIManager : MonoBehaviour
         _pauseMenu.SetActive(false);
         _shardIndicatorAnimator.SetBool("visible", false);
         Time.timeScale = 1;
+        _UISFX.PlayPauseMenuClose();
     }
 
     public void QuitGame()
