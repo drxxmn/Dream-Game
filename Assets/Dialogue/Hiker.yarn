@@ -10,14 +10,14 @@ Hiker: 'Course you are!
 Hiker: I can see that you've already hiked [bold]{round_places($distanceTraveled / 1000, 1)} kilometers![/bold]
 <<if $receivedGiftFromHiker>>
     Hiker: Still going strong I see.
-    Hiker: Please keep it up.
+    Hiker: Keep on hikin'!
     Hiker: I'll be rooting for ya!
-<<elseif $distanceTraveled > 2000>>
+<<elseif $distanceTraveled > 1000>>
     Hiker: Wow! That's some serious hikin'!
     Hiker: Here, have some more soul.
     <<increase_stamina Player 6>>
     <<set $receivedGiftFromHiker to true>>
-    Hiker: It'll help you hike even further!
+    Hiker: It'll help you get to even more exciting places!
 <<else>>
     Hiker: Hohoho, it's a good start, for sure.
     Hiker: Come back to me when you've got some more experience under you belt.
