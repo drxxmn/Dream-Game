@@ -1,6 +1,7 @@
 using UnityEngine;
 using StarterAssets;
 using UnityEngine.Events;
+using Yarn.Unity;
 
 public class PlayerStamina : MonoBehaviour
 {
@@ -63,6 +64,7 @@ public class PlayerStamina : MonoBehaviour
         }
     }
 
+    [YarnCommand("increase_stamina")]
     public void IncreaseProgress(int amount)
     {
         UpgradeProgress += amount;

@@ -1039,6 +1039,7 @@ GameObject:
   - component: {fileID: 135756642000475821}
   - component: {fileID: 4416926081852918493}
   - component: {fileID: 2265957831456311591}
+  - component: {fileID: 2755585409790761505}
   m_Layer: 8
   m_Name: PlayerArmature
   m_TagString: Player
@@ -1126,6 +1127,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 26e54e5a728a9234ab24fcf1460ed8a2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _variableStorage: {fileID: 0}
   MoveSpeed: 2
   SprintSpeed: 5.335
   RotationSmoothTime: 0.12
@@ -1326,6 +1328,30 @@ MonoBehaviour:
     StaminaFull:
       m_PersistentCalls:
         m_Calls: []
+--- !u!114 &2755585409790761505
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4416926081852918481}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3f452f42ddbf6f9429f8a5e724cd81e6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _variableStorage: {fileID: 0}
+  _UISFXAudioSource: {fileID: 0}
+  _addItemClip: {fileID: 8300000, guid: 1ab384600ccb7b94d8dd82d44e506a0a, type: 3}
+  _removeItemClip: {fileID: 8300000, guid: 60fdf931cab4e6546ad6f4aa0ab64a44, type: 3}
+  _events:
+    ItemAdded:
+      m_PersistentCalls:
+        m_Calls: []
+    ItemRemoved:
+      m_PersistentCalls:
+        m_Calls: []
+  _items: []
 --- !u!1 &4523139366846529165
 GameObject:
   m_ObjectHideFlags: 0
