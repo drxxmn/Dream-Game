@@ -48,6 +48,9 @@ namespace StarterAssets
 
         [Tooltip("Time required to pass before entering the fall state. Useful for walking down stairs")]
         public float FallTimeout = 0.15f;
+        
+        [Range(-100, 0)]
+        public float YPositionTeleport = -1;
 
         [Header("Float behaviour")]
         [Tooltip("Character floating mode enabled or not")]
@@ -117,6 +120,8 @@ namespace StarterAssets
         private StarterAssetsInputs _input;
         private GameObject _mainCamera;
         private PlayerStamina _stamina;
+
+        private Vector3 lastGrounded;
 
         private const float _threshold = 0.01f;
 
@@ -212,6 +217,11 @@ namespace StarterAssets
                 RaycastHit hit;
                 Physics.Raycast(transform.position, Vector3.down, out hit, 50f, GroundLayers);
                 if (hit.normal.y != 0 && hit.normal.y < .8f) Grounded = false;
+                lastGrounded = transform.position;
+            }
+            else if (transform.position.y < -1)
+            {
+                Jump();
             }
 
             // update animator if using character
