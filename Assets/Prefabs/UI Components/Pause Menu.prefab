@@ -785,7 +785,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3123010080500323833, guid: 39565c19d6ecd67408ce676c74fa9856, type: 3}
       propertyPath: m_text
-      value: Save and quit
+      value: Quit
       objectReference: {fileID: 0}
     - target: {fileID: 3123010080500323833, guid: 39565c19d6ecd67408ce676c74fa9856, type: 3}
       propertyPath: m_fontSize
