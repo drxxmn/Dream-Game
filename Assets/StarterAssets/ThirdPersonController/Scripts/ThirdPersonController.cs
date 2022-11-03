@@ -221,9 +221,7 @@ namespace StarterAssets
             }
             else if (transform.position.y < YPositionTeleport)
             {
-                _controller.enabled = false;
-                _animator.enabled = false;
-                transform.position.Set(9, 0, 11);
+                _verticalVelocity = Mathf.Sqrt(JumpHeight * -2f * Gravity * 2);
             }
 
             // update animator if using character
