@@ -49,7 +49,7 @@ namespace StarterAssets
         [Tooltip("Time required to pass before entering the fall state. Useful for walking down stairs")]
         public float FallTimeout = 0.15f;
         
-        [Range(-100, 0)]
+        [Range(-100, -.1f)]
         public float YPositionTeleport = -1;
 
         [Header("Float behaviour")]
@@ -219,9 +219,11 @@ namespace StarterAssets
                 if (hit.normal.y != 0 && hit.normal.y < .8f) Grounded = false;
                 lastGrounded = transform.position;
             }
-            else if (transform.position.y < -1)
+            else if (transform.position.y < YPositionTeleport)
             {
-                Jump();
+                _controller.enabled = false;
+                _animator.enabled = false;
+                transform.position.Set(9, 0, 11);
             }
 
             // update animator if using character
