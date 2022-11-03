@@ -11,7 +11,7 @@ public class UIInventory : MonoBehaviour
 
     List<GameObject> _itemsDisplayed = new();
 
-    private void Start()
+    public void Start()
     {
         if (_inventory == null) _inventory = FindObjectOfType<PlayerInventory>();
         UpdatePanel();
