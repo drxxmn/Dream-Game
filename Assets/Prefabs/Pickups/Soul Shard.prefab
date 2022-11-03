@@ -4823,6 +4823,7 @@ GameObject:
   - component: {fileID: 5209892751986037852}
   - component: {fileID: 1154078578604544149}
   - component: {fileID: 3891780886002585492}
+  - component: {fileID: 6199891586942254300}
   m_Layer: 0
   m_Name: Soul Shard
   m_TagString: Untagged
@@ -4874,6 +4875,26 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ProgressPoints: 1
   PickupClip: {fileID: 8300000, guid: 1ab384600ccb7b94d8dd82d44e506a0a, type: 3}
+--- !u!95 &6199891586942254300
+Animator:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5495207307133118650}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 8e54d64ed30edcb41929dfeefdd72591, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &8769861035888164223
 GameObject:
   m_ObjectHideFlags: 0

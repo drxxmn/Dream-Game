@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 4558131130036044576}
   - component: {fileID: 4038638411350072361}
   - component: {fileID: 3972589819892781356}
+  - component: {fileID: 5165176350928789735}
   m_Layer: 0
   m_Name: ItemPickup
   m_TagString: Untagged
@@ -61,6 +62,26 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Id: 0
   Amount: 1
+--- !u!95 &5165176350928789735
+Animator:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 844201271995132247}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 8e54d64ed30edcb41929dfeefdd72591, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &8057880397653832315
 GameObject:
   m_ObjectHideFlags: 0
