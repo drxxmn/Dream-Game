@@ -10,9 +10,10 @@ public class YarnInteractable : MonoBehaviour
     // internal properties not exposed to editor
     private DialogueRunner dialogueRunner;
     private Collider dialogueTrigger;
-    private bool interactable = true;
+    private bool interactable = false;
     private bool isCurrentConversation = false;
     private ThirdPersonController playerController;
+    private YarnTriggerBubble bubble;
 
     public void Start()
     {
@@ -20,18 +21,25 @@ public class YarnInteractable : MonoBehaviour
         dialogueRunner = FindObjectOfType<Yarn.Unity.DialogueRunner>();
         dialogueRunner.onDialogueComplete.AddListener(EndConversation);
         playerController = FindObjectOfType<ThirdPersonController>();
-    }
-
-    public void OnMouseDown()
-    {
-        StartConversation();
+        bubble = FindObjectOfType<YarnTriggerBubble>();
+        StarterAssetsInputs.InteractPressed += StartConversation;
     }
 
     private void OnTriggerEnter(Collider other)
     {
         if (other.tag == "Player")
         {
-            StartConversation();
+            bubble.Show(gameObject);
+            interactable = true;
+        }
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.tag == "Player")
+        {
+            bubble.Hide();
+            interactable = false;
         }
     }
 
@@ -39,6 +47,7 @@ public class YarnInteractable : MonoBehaviour
     {
         if (interactable && !dialogueRunner.IsDialogueRunning)
         {
+            bubble.Hide();
             Debug.Log($"Started conversation with {name}.");
             isCurrentConversation = true;
             playerController.CanMove = false;
@@ -54,11 +63,5 @@ public class YarnInteractable : MonoBehaviour
             playerController.CanMove = true;
             Debug.Log($"Ended conversation with {name}.");
         }
-    }
-
-    [YarnCommand("disable")]
-    public void DisableConversation()
-    {
-        interactable = false;
     }
 }
