@@ -89,6 +89,8 @@ namespace StarterAssets
         [Tooltip("For locking the camera position on all axis")]
         public bool LockCameraPosition = false;
 
+        public bool CanMove { get; set; } = true;
+
         // cinemachine
         private float _cinemachineTargetYaw;
         private float _cinemachineTargetPitch;
@@ -121,7 +123,7 @@ namespace StarterAssets
         private GameObject _mainCamera;
         private PlayerStamina _stamina;
 
-        private Vector3 lastGrounded;
+        private Vector3 _lastGrounded;
 
         private const float _threshold = 0.01f;
 
@@ -217,7 +219,7 @@ namespace StarterAssets
                 RaycastHit hit;
                 Physics.Raycast(transform.position, Vector3.down, out hit, 50f, GroundLayers);
                 if (hit.normal.y != 0 && hit.normal.y < .8f) Grounded = false;
-                lastGrounded = transform.position;
+                _lastGrounded = transform.position;
             }
             else if (transform.position.y < YPositionTeleport)
             {
@@ -262,7 +264,7 @@ namespace StarterAssets
 
             // note: Vector2's == operator uses approximation so is not floating point error prone, and is cheaper than magnitude
             // if there is no input, set the target speed to 0
-            if (_input.move == Vector2.zero) targetSpeed = 0.0f;
+            if (_input.move == Vector2.zero || !CanMove) targetSpeed = 0.0f;
 
             // a reference to the players current horizontal velocity
             float currentHorizontalSpeed = new Vector3(_controller.velocity.x, 0.0f, _controller.velocity.z).magnitude;

@@ -1,3 +1,4 @@
+using StarterAssets;
 using UnityEngine;
 using Yarn.Unity;
 
@@ -11,12 +12,14 @@ public class YarnInteractable : MonoBehaviour
     private Collider dialogueTrigger;
     private bool interactable = true;
     private bool isCurrentConversation = false;
+    private ThirdPersonController playerController;
 
     public void Start()
     {
         dialogueTrigger = GetComponent<Collider>();
         dialogueRunner = FindObjectOfType<Yarn.Unity.DialogueRunner>();
         dialogueRunner.onDialogueComplete.AddListener(EndConversation);
+        playerController = FindObjectOfType<ThirdPersonController>();
     }
 
     public void OnMouseDown()
@@ -38,6 +41,7 @@ public class YarnInteractable : MonoBehaviour
         {
             Debug.Log($"Started conversation with {name}.");
             isCurrentConversation = true;
+            playerController.CanMove = false;
             dialogueRunner.StartDialogue(conversationStartNode);
         }
     }
@@ -47,6 +51,7 @@ public class YarnInteractable : MonoBehaviour
         if (isCurrentConversation)
         {
             isCurrentConversation = false;
+            playerController.CanMove = true;
             Debug.Log($"Ended conversation with {name}.");
         }
     }
