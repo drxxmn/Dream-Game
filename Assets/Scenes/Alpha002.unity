@@ -9993,6 +9993,30 @@ PrefabInstance:
       propertyPath: _shardIndicator
       value: 
       objectReference: {fileID: 1162211545}
+    - target: {fileID: 6141170594736591327, guid: 88b7b4420984f2a4ba2dcca47eac7f06, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6141170594736591327, guid: 88b7b4420984f2a4ba2dcca47eac7f06, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6141170594736591327, guid: 88b7b4420984f2a4ba2dcca47eac7f06, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6141170594736591327, guid: 88b7b4420984f2a4ba2dcca47eac7f06, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6141170594736591327, guid: 88b7b4420984f2a4ba2dcca47eac7f06, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6141170594736591327, guid: 88b7b4420984f2a4ba2dcca47eac7f06, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6225318598401261376, guid: 88b7b4420984f2a4ba2dcca47eac7f06, type: 3}
       propertyPath: pixelFilter
       value: 
@@ -11413,6 +11437,10 @@ PrefabInstance:
       propertyPath: RegenerationRate
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 2265957831456311591, guid: 64dce48905ffd9b4293e595fa6941544, type: 3}
+      propertyPath: _variableStorage
+      value: 
+      objectReference: {fileID: 1282613502}
     - target: {fileID: 2265957831456311591, guid: 64dce48905ffd9b4293e595fa6941544, type: 3}
       propertyPath: _events.ProgressIncreased.m_PersistentCalls.m_Calls.Array.size
       value: 2

@@ -5,6 +5,8 @@ using Yarn.Unity;
 
 public class PlayerStamina : MonoBehaviour
 {
+    [SerializeField] private VariableStorageBehaviour _variableStorage;
+    
     [Tooltip("Maximum amount of stamina for the player")]
     public float MaxStamina = 1f;
 

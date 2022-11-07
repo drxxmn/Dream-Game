@@ -1,7 +1,7 @@
 ﻿title: FirstNPC
 ---
 <<declare $spokenToBeatrice = false as bool>>
-<<declare $voicefragments = 0 as number>>
+<<declare $voiceFragments = 0 as number>>
 <<if not $spokenToBeatrice>>
     Beatrice: Hey! You there!
     Beatrice: You're new here right?
@@ -21,24 +21,24 @@
     Beatrice: Soul Shards are highly personal. I'm not able to see yours.
     Beatrice: Collect them to restore your voice.
     Beatrice: You seem to be able to use your voice to jump higher and float through the air!
-    Beatrice: Use the 'F' key to toggle your floating ability!
     Beatrice: Cya! Good luck!
+    <<show_tutorial_modal UI>>
     <<set $spokenToBeatrice to true>>
-<<elseif $voicefragments > 0>>
+<<elseif $voiceFragments > 0>>
     Beatrice: Hey! It's you again!
     Beatrice: Got your voice back yet?
     Player: Yes!
     Beatrice: That's great!
     Beatrice: You have a lovely voice!
     Player: Thank you!
-    Beatrice: Remember, collect Soul Shards and use 'F' to toggle your floating ability!
+    Beatrice: Remember, keep on collecting those Soul Shards!
     Beatrice: Cya!
 <<else>>
     Beatrice: Hey! It's you again!
     Beatrice: Got your voice back yet?
     Player: ...
     Beatrice: Guess not. Bummer.
-    Beatrice: Remember, collect Soul Shards and use 'F' to toggle your floating ability!
+    Beatrice: Remember, keep on collecting those Soul Shards!
     Beatrice: Cya! Good luck!
 <<endif>>
 ===

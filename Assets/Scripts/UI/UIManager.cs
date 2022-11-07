@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
+using Yarn.Unity;
 
 public class UIManager : MonoBehaviour
 {
@@ -21,6 +22,7 @@ public class UIManager : MonoBehaviour
     [Tooltip("Put your Stamina Bar gameobject here")]
     private GameObject _staminaBar;
     [SerializeField] private GameObject _staminaUnitPrefab;
+    [SerializeField] private GameObject _tutorialModal;
     private List<GameObject> _staminaUnits = new List<GameObject>();
     private List<Image> _staminaUnitsImages = new List<Image>();
 
@@ -163,6 +165,14 @@ public class UIManager : MonoBehaviour
     {
         _shardIndicatorAnimator.SetBool("visible", true);
         StartCoroutine(ShardIndicatorTimer());
+    }
+
+    [YarnCommand("show_tutorial_modal")]
+    public void ShowTutorialModal()
+    {
+        if (_tutorialModal == null) return;
+
+        _tutorialModal.SetActive(true);
     }
 
     private System.Collections.IEnumerator ShardIndicatorTimer()

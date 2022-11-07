@@ -20,7 +20,7 @@ Hiker: I can see that you've already hiked [bold]{round_places($distanceTraveled
     Hiker: It'll help you get to even more exciting places!
 <<else>>
     Hiker: Hohoho, it's a good start, for sure.
-    Hiker: Come back to me when you've got some more experience under you belt.
+    Hiker: Come back to me when you've got some more experience under your belt.
 <<endif>>
 <<if $visitedWidowsPeak>>
     Hiker: Oh my, you've visited Widows's Peak, haven't you!
