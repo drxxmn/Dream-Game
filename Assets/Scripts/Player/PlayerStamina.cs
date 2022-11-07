@@ -71,6 +71,12 @@ public class PlayerStamina : MonoBehaviour
     {
         UpgradeProgress += amount;
 
+        // Set voiceFragments in variable storage
+        float oldProgress = 0;
+        _variableStorage.TryGetValue<float>("$voiceFragments", out oldProgress);
+        float newProgress = oldProgress + amount;
+        _variableStorage.SetValue("$voiceFragments", newProgress);
+
         if (UpgradeProgress >= ShardsToUpgrade)
         {
             int pointsToUpgrade = UpgradeProgress / ShardsToUpgrade;

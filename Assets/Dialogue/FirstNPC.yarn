@@ -24,7 +24,7 @@
     Beatrice: Cya! Good luck!
     <<show_tutorial_modal UI>>
     <<set $spokenToBeatrice to true>>
-<<elseif $voiceFragments > 0>>
+<<elseif $voiceFragments >= 4>>
     Beatrice: Hey! It's you again!
     Beatrice: Got your voice back yet?
     Player: Yes!

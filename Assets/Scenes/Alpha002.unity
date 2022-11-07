@@ -9973,6 +9973,10 @@ PrefabInstance:
       propertyPath: m_SizeDelta.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3069219767526122129, guid: 88b7b4420984f2a4ba2dcca47eac7f06, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4112300866428281227, guid: 88b7b4420984f2a4ba2dcca47eac7f06, type: 3}
       propertyPath: _canvas
       value: 
