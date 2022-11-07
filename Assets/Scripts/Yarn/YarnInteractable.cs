@@ -22,7 +22,14 @@ public class YarnInteractable : MonoBehaviour
         dialogueRunner.onDialogueComplete.AddListener(EndConversation);
         playerController = FindObjectOfType<ThirdPersonController>();
         bubble = FindObjectOfType<YarnTriggerBubble>();
+    }
+
+    private void OnEnable() {
         StarterAssetsInputs.InteractPressed += StartConversation;
+    }
+
+    private void OnDisable() {
+        StarterAssetsInputs.InteractPressed -= StartConversation;
     }
 
     private void OnTriggerEnter(Collider other)
