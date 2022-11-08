@@ -7755,6 +7755,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1984501947077700544, guid: 487c63440e218e149bca87ac0a30d44a, type: 3}
+      propertyPath: m_audioClip
+      value: 
+      objectReference: {fileID: 8300000, guid: ec687d30c916dd843bddea49c3f4f01c, type: 3}
     - target: {fileID: 5497589079095841376, guid: 487c63440e218e149bca87ac0a30d44a, type: 3}
       propertyPath: m_Name
       value: BackgroundSFX
@@ -9975,7 +9979,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3069219767526122129, guid: 88b7b4420984f2a4ba2dcca47eac7f06, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4112300866428281227, guid: 88b7b4420984f2a4ba2dcca47eac7f06, type: 3}
       propertyPath: _canvas
