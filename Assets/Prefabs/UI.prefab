@@ -2224,13 +2224,13 @@ MonoBehaviour:
   _openPauseMenuClip: {fileID: 8300000, guid: 14637bab06196db43830e723c2b45699, type: 3}
   _closePauseMenuClip: {fileID: 8300000, guid: ce3384b313828a246b3ef58e48454bb5, type: 3}
   _floatIndicator: {fileID: 2078816782050431806}
-  _staminaUnitFull: {fileID: 21300000, guid: 25e762eb8f975d448835e87530f3e0d0, type: 3}
-  _staminaUnitEmpty: {fileID: 21300000, guid: 801238b7ea31e0d41a7d4f2b25a2bd77, type: 3}
+  _staminaUnitFull: {fileID: 21300000, guid: 7ff9249c8a06bc142bb4f5eae4dc563d, type: 3}
+  _staminaUnitEmpty: {fileID: 21300000, guid: d034aef237f930549b1d716cd39d6506, type: 3}
   _shardSprites:
-  - {fileID: 21300000, guid: ffa6aefd025261a48a803002a9f4ebfb, type: 3}
-  - {fileID: 21300000, guid: b96d7f3650c991343a504fa4bae19ed0, type: 3}
-  - {fileID: 21300000, guid: d7af54e6699e16b46b61daccfa01516c, type: 3}
-  - {fileID: 21300000, guid: 571f9439f3f99d14a9bfcf78cb14c3e2, type: 3}
+  - {fileID: 21300000, guid: d034aef237f930549b1d716cd39d6506, type: 3}
+  - {fileID: 21300000, guid: 32e3939b9a7122f48a0d05eb0e4c5552, type: 3}
+  - {fileID: 21300000, guid: 0719cd9aaa1dddd45a5facb6c1b7d7bd, type: 3}
+  - {fileID: 21300000, guid: 2ad437eb66ccdeb478a96124c57a494f, type: 3}
 --- !u!1 &7895813597596844034
 GameObject:
   m_ObjectHideFlags: 0
