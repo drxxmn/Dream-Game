@@ -129,6 +129,8 @@ namespace StarterAssets
 
         private bool _hasAnimator;
 
+        private ParticleSystem _dustParticle;
+
         private bool IsCurrentDeviceMouse
         {
             get
@@ -161,6 +163,7 @@ namespace StarterAssets
             _stamina = GetComponent<PlayerStamina>();
 #if ENABLE_INPUT_SYSTEM && STARTER_ASSETS_PACKAGES_CHECKED
             _playerInput = GetComponent<PlayerInput>();
+            _dustParticle = GetComponentInChildren<ParticleSystem>();
 #else
 			Debug.LogError( "Starter Assets package is missing dependencies. Please use Tools/Starter Assets/Reinstall Dependencies to fix it");
 #endif
@@ -189,6 +192,7 @@ namespace StarterAssets
             JumpAndGravity();
             GroundedCheck();
             Move();
+            ParticleManager();
         }
 
         private void LateUpdate()
@@ -455,6 +459,19 @@ namespace StarterAssets
                     AudioSource.PlayClipAtPoint(FootstepAudioClips[index], transform.TransformPoint(_controller.center), FootstepAudioVolume);
                 }
             }
+        }
+
+        private void ParticleManager()
+        {
+            if (Grounded && !_dustParticle.isPlaying)
+            {
+                _dustParticle.Play();
+            }
+            else if (!Grounded)
+            {
+                _dustParticle.Stop();
+            }
+
         }
 
         private void OnLand(AnimationEvent animationEvent)
