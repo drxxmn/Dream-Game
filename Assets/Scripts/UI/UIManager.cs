@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using StarterAssets;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -37,11 +38,15 @@ public class UIManager : MonoBehaviour
     [SerializeField] private AudioClip _openPauseMenuClip;
     [SerializeField] private AudioClip _closePauseMenuClip;
 
+    [SerializeField] private GameObject _floatIndicator;
+
     [Header("Stamina Unit Sprites")]
     [SerializeField] private Sprite _staminaUnitFull;
     [SerializeField] private Sprite _staminaUnitEmpty;
 
     [SerializeField] private Sprite[] _shardSprites;
+
+    private ThirdPersonController _playerController;
 
     private void Start()
     {
@@ -83,6 +88,18 @@ public class UIManager : MonoBehaviour
         UpdateShardIndicator();
 
         _pauseMenu.SetActive(false);
+
+        _playerController = FindObjectOfType<ThirdPersonController>();
+    }
+
+    private void OnEnable()
+    {
+        StarterAssetsInputs.FloatPressed += ShowFloatIndicator;
+    }
+
+    private void OnDisable()
+    {
+        StarterAssetsInputs.FloatPressed -= ShowFloatIndicator;
     }
 
     private void Update()
@@ -179,6 +196,12 @@ public class UIManager : MonoBehaviour
     {
         yield return new WaitForSeconds(_shardIndicatorShowDuration);
         _shardIndicatorAnimator.SetBool("visible", false);
+    }
+
+    private void ShowFloatIndicator()
+    {
+        if (_playerController.FloatMode) _floatIndicator.SetActive(true);
+        else _floatIndicator.SetActive(false);
     }
 
     private void ErrorAndDisable(string text)

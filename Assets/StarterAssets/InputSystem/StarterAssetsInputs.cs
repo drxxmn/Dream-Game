@@ -18,6 +18,7 @@ namespace StarterAssets
 
 		public delegate void InputEvents();
     	public static event InputEvents InteractPressed;
+		public static event InputEvents FloatPressed;
 
 		[Header("Movement Settings")]
 		public bool analogMovement;
@@ -53,6 +54,7 @@ namespace StarterAssets
 		public void OnFloat(InputValue value)
 		{
 			FloatInput(value.isPressed);
+			if (InteractPressed != null) FloatPressed();
 		}
 
 		public void OnMenu(InputValue value)

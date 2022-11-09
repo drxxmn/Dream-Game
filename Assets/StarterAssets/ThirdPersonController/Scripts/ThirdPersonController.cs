@@ -172,11 +172,20 @@ namespace StarterAssets
             _fallTimeoutDelta = FallTimeout;
         }
 
+        private void OnEnable()
+        {
+            StarterAssetsInputs.FloatPressed += FloatToggle;
+        }
+
+        private void OnDisable()
+        {
+            StarterAssetsInputs.FloatPressed -= FloatToggle;
+        }
+
         private void Update()
         {
             _hasAnimator = TryGetComponent(out _animator);
 
-            FloatCheck();
             JumpAndGravity();
             GroundedCheck();
             Move();
@@ -196,13 +205,9 @@ namespace StarterAssets
             _animIDMotionSpeed = Animator.StringToHash("MotionSpeed");
         }
 
-        private void FloatCheck()
+        private void FloatToggle()
         {
-            if (_input.playerFloat)
-            {
-                _input.playerFloat = false;
-                FloatMode = !FloatMode;
-            }
+            FloatMode = !FloatMode;
         }
 
         private void GroundedCheck()
