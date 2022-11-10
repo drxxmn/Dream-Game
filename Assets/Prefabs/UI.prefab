@@ -778,7 +778,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &7786590931882790432
 RectTransform:
   m_ObjectHideFlags: 0
@@ -827,7 +827,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 2561d731b2aba934bafd0fcf3522af41, type: 3}
+  m_Sprite: {fileID: 21300000, guid: ec6b06342551e5f418b12d2d69ef8389, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -2224,6 +2224,8 @@ MonoBehaviour:
   _openPauseMenuClip: {fileID: 8300000, guid: 14637bab06196db43830e723c2b45699, type: 3}
   _closePauseMenuClip: {fileID: 8300000, guid: ce3384b313828a246b3ef58e48454bb5, type: 3}
   _floatIndicator: {fileID: 2078816782050431806}
+  _floatIndicatorOn: {fileID: 21300000, guid: 2561d731b2aba934bafd0fcf3522af41, type: 3}
+  _floatIndicatorOff: {fileID: 21300000, guid: ec6b06342551e5f418b12d2d69ef8389, type: 3}
   _staminaUnitFull: {fileID: 21300000, guid: 7ff9249c8a06bc142bb4f5eae4dc563d, type: 3}
   _staminaUnitEmpty: {fileID: 21300000, guid: d034aef237f930549b1d716cd39d6506, type: 3}
   _shardSprites:

@@ -38,7 +38,10 @@ public class UIManager : MonoBehaviour
     [SerializeField] private AudioClip _openPauseMenuClip;
     [SerializeField] private AudioClip _closePauseMenuClip;
 
+    [Header("Float indicator")]
     [SerializeField] private GameObject _floatIndicator;
+    [SerializeField] private Sprite _floatIndicatorOn;
+    [SerializeField] private Sprite _floatIndicatorOff;
 
     [Header("Stamina Unit Sprites")]
     [SerializeField] private Sprite _staminaUnitFull;
@@ -200,8 +203,9 @@ public class UIManager : MonoBehaviour
 
     private void ShowFloatIndicator()
     {
-        if (_playerController.FloatMode) _floatIndicator.SetActive(true);
-        else _floatIndicator.SetActive(false);
+        Image image = _floatIndicator.GetComponent<Image>();
+        if (_playerController.FloatMode) image.sprite = _floatIndicatorOn;
+        else image.sprite = _floatIndicatorOff;
     }
 
     private void ErrorAndDisable(string text)
