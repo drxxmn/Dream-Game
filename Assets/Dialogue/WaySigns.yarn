@@ -1,14 +1,20 @@
 ﻿title: WaySign1
 ---
-WaySign1: → Candycane Forest <br>← Mt. Budan & Calico Desert
+WaySign1: → Pine Heights & Jellicle Canyon<br>← Veera's Cottage
 ===
 
 title: WaySign2
 ---
-WaySign2: ↑ Mt. Budan
+WaySign2: → Veera's Cottage<br>← Calico Beach & The A-maze-ing Rockies
 ===
 
 title: WaySign3
 ---
-WaySign3: Congrats, you've reached the end of the demo level!
+WaySign3: → Mt. Dreammore<br>← The A-maze-ing Rockies
+WaySign3: ↑ Pine Heights
+===
+
+title: WaySign4
+---
+WaySign3: → The A-maze-ing Rockies<br>← Calico Beach
 ===

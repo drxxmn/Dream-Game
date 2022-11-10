@@ -1,6 +1,6 @@
 ﻿title: ProtoNPC
 ---
-<<if $spokenToBeatrice>>
+<<if $spokenToBob>>
     Lilly: Hi! I'm Beatrice's twin sister, Lilly!
 <<else>>
     Lilly: Hello there! I'm Lilly!

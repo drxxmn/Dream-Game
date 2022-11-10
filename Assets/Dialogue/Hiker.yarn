@@ -1,7 +1,7 @@
 ﻿title: Hiker
 ---
 <<declare $distanceTraveled = 0 as number>>
-<<declare $visitedWidowsPeak = false as bool>>
+<<declare $visitedMountDreammore = false as bool>>
 <<declare $receivedGiftFromHiker = false as bool>>
 Hiker: Hohoho, boy do I love me some hikin'.
 Hiker: How 'bout you little fellow?
@@ -12,21 +12,26 @@ Hiker: I can see that you've already hiked [bold]{round_places($distanceTraveled
     Hiker: Still going strong I see.
     Hiker: Keep on hikin'!
     Hiker: I'll be rooting for ya!
-<<elseif $distanceTraveled > 1000>>
+<<elseif $distanceTraveled > 2500>>
     Hiker: Wow! That's some serious hikin'!
     Hiker: Here, have some more soul.
-    <<increase_stamina Player 6>>
+    <<increase_stamina Player 4>>
     <<set $receivedGiftFromHiker to true>>
     Hiker: It'll help you get to even more exciting places!
 <<else>>
     Hiker: Hohoho, it's a good start, for sure.
     Hiker: Come back to me when you've got some more experience under your belt.
 <<endif>>
-<<if $visitedWidowsPeak>>
-    Hiker: Oh my, you've visited Widows's Peak, haven't you!
+<<if $visitedMountDreammore>>
+    Hiker: Oh my, you've been to the top of Mt. Dreammore, haven't you!
     Hiker: I can see it in your eyes.
     Hiker: Beautiful place that is.
     Hiker: You'll never forget it.
+<<elseif $couplesQuest == 1 and $item_2 == 0>>
+    Hiker: You'll sometimes come across beautiful things when hikin'.
+    Hiker: Why, just earlier today I found an ornate ring in the sand at Calico Beach!
+    Hiker: I put it back where I found it though.
+    Hiker: Best not to disturb the landscape.
 <<endif>>
 Hiker: Take care now!
 ===

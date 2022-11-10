@@ -5157,7 +5157,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _variableStorage: {fileID: 0}
   MaxStamina: 0
-  RegenerationRate: 2
+  RegenerationRate: 3
   ShardsToUpgrade: 4
   _events:
     ProgressIncreased:

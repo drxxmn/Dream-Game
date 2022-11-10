@@ -84,6 +84,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: ItemPickup(Rabbit)
       objectReference: {fileID: 0}
+    - target: {fileID: 3972589819892781356, guid: 17241b4bb98678345b19c05fabcaf5fc, type: 3}
+      propertyPath: Id
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4558131130036044576, guid: 17241b4bb98678345b19c05fabcaf5fc, type: 3}
       propertyPath: m_RootOrder
       value: 0

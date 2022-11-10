@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 7225312967326377838}
   - component: {fileID: 6046834881622452427}
   - component: {fileID: 8362721615319718913}
+  - component: {fileID: 4834144239668134995}
   m_Layer: 0
   m_Name: tree_palmTall
   m_TagString: Untagged
@@ -84,3 +85,17 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!136 &4834144239668134995
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8002517688741232084}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 0.45
+  m_Height: 4.0669765
+  m_Direction: 1
+  m_Center: {x: 0.00000059604645, y: 2.0334883, z: -0.0077007413}
