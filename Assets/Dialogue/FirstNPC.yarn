@@ -1,44 +1,46 @@
 ﻿title: FirstNPC
 ---
-<<declare $spokenToBeatrice = false as bool>>
-<<declare $voicefragments = 0 as number>>
-<<if not $spokenToBeatrice>>
-    Beatrice: Hey! You there!
-    Beatrice: You're new here right?
-    Beatrice: I don't recognise you.
+<<declare $spokenToBob = false as bool>>
+<<declare $voiceFragments = 0 as number>>
+<<if not $spokenToBob>>
+    Bob: Hey! You there!
+    Bob: You're new here right?
+    Bob: I don't recognise you.
+    Bob: I'm Bob! What's your name?
     Player: ...
-    Beatrice: Welcome!
+    Bob: Welcome!
     Player: ...
-    Beatrice: Uhm... do you understand what I am saying?
+    Bob: Uhm... do you understand what I am saying?
     Player: *nod*
-    Beatrice: Ah. Good.
-    Beatrice: So, you can't speak?
-    Beatrice: You must have lost your voice when arriving here.
-    Beatrice: You see, every person who arrives in this world loses something dear to them.
-    Beatrice: To wake up again, you have to recover what you have lost.
-    Beatrice: And convince the Sandman of course. He's in charge of things around here.
-    Beatrice: If you take a look around, you can probaby spot Soul Shards floating around.
-    Beatrice: Soul Shards are highly personal. I'm not able to see yours.
-    Beatrice: Collect them to restore your voice.
-    Beatrice: You seem to be able to use your voice to jump higher and float through the air!
-    Beatrice: Use the 'F' key to toggle your floating ability!
-    Beatrice: Cya! Good luck!
-    <<set $spokenToBeatrice to true>>
-<<elseif $voicefragments > 0>>
-    Beatrice: Hey! It's you again!
-    Beatrice: Got your voice back yet?
+    Bob: Ah. Good.
+    Bob: So, you can't speak?
+    Bob: You must have lost your voice when arriving here.
+    Bob: You see, every person who arrives in this world loses something dear to them.
+    Bob: To wake up again, you have to recover what you have lost.
+    Bob: If you take a look around, you can probaby spot Soul Shards floating around.
+    Bob: Soul Shards are highly personal. I'm not able to see yours.
+    Bob: Collect them to restore your voice.
+    Bob: You seem to be able to use your voice to jump higher and float through the air!
+    Bob: Use the power of your voice to get to the top of Mt. Dreammore.
+    Bob: The legend says that is where you'll be able to wake up again!
+    Bob: Good luck!
+    <<display_notification NotificationPanel "Press TAB to open the pause menu and view the controls.">>
+    <<set $spokenToBob to true>>
+<<elseif $voiceFragments >= 4>>
+    Bob: Hey! It's you again!
+    Bob: Got your voice back yet?
     Player: Yes!
-    Beatrice: That's great!
-    Beatrice: You have a lovely voice!
+    Bob: That's great!
+    Bob: You have a lovely voice!
     Player: Thank you!
-    Beatrice: Remember, collect Soul Shards and use 'F' to toggle your floating ability!
-    Beatrice: Cya!
+    Bob: Remember, keep on collecting those Soul Shards!
+    Bob: Cya!
 <<else>>
-    Beatrice: Hey! It's you again!
-    Beatrice: Got your voice back yet?
+    Bob: Hey! It's you again!
+    Bob: Got your voice back yet?
     Player: ...
-    Beatrice: Guess not. Bummer.
-    Beatrice: Remember, collect Soul Shards and use 'F' to toggle your floating ability!
-    Beatrice: Cya! Good luck!
+    Bob: Guess not. Bummer.
+    Bob: Remember, keep on collecting those Soul Shards!
+    Bob: Cya! Good luck!
 <<endif>>
 ===

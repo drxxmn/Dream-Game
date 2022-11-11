@@ -1,0 +1,31 @@
+﻿title: WaySign1
+---
+WaySign1: → Pine Heights & Jellicle Canyon<br>← Veera's Cottage
+===
+
+title: WaySign2
+---
+WaySign2: → Veera's Cottage<br>← Calico Beach & The A-maze-ing Rockies
+===
+
+title: WaySign3
+---
+WaySign3: → Mt. Dreammore<br>← The A-maze-ing Rockies
+WaySign3: ↑ Pine Heights
+===
+
+title: WaySign4
+---
+WaySign4: → The A-maze-ing Rockies<br>← Calico Beach
+===
+
+title: WaySign5
+---
+WaySign5: → Serpent Hillock & Calico Beach<br>← Pine Heights
+WaySign5: ↓ Veera's Cottage & Jellicle Canyon
+===
+
+title: WaySign6
+---
+WaySign6: ↑ Serpent Hillock & Calico Beach<br>→ The A-maze-ing Rockies
+===

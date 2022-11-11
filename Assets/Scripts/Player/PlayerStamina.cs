@@ -5,6 +5,8 @@ using Yarn.Unity;
 
 public class PlayerStamina : MonoBehaviour
 {
+    [SerializeField] private VariableStorageBehaviour _variableStorage;
+    
     [Tooltip("Maximum amount of stamina for the player")]
     public float MaxStamina = 1f;
 
@@ -68,6 +70,12 @@ public class PlayerStamina : MonoBehaviour
     public void IncreaseProgress(int amount)
     {
         UpgradeProgress += amount;
+
+        // Set voiceFragments in variable storage
+        float oldProgress = 0;
+        _variableStorage.TryGetValue<float>("$voiceFragments", out oldProgress);
+        float newProgress = oldProgress + amount;
+        _variableStorage.SetValue("$voiceFragments", newProgress);
 
         if (UpgradeProgress >= ShardsToUpgrade)
         {

@@ -16,6 +16,10 @@ namespace StarterAssets
 		public bool playerFloat;
 		public UnityEvent menuPressed = new UnityEvent();
 
+		public delegate void InputEvents();
+    	public static event InputEvents InteractPressed;
+		public static event InputEvents FloatPressed;
+
 		[Header("Movement Settings")]
 		public bool analogMovement;
 
@@ -50,14 +54,19 @@ namespace StarterAssets
 		public void OnFloat(InputValue value)
 		{
 			FloatInput(value.isPressed);
+			if (InteractPressed != null) FloatPressed();
 		}
 
 		public void OnMenu(InputValue value)
 		{
 			menuPressed.Invoke();
 		}
-#endif
 
+		public void OnInteract(InputValue value)
+		{
+			if (InteractPressed != null) InteractPressed();
+		}
+#endif
 
 		public void MoveInput(Vector2 newMoveDirection)
 		{

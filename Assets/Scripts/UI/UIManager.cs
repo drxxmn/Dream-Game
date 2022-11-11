@@ -1,7 +1,10 @@
 using System.Collections.Generic;
+using StarterAssets;
 using TMPro;
 using UnityEngine;
+using UnityEngine.Audio;
 using UnityEngine.UI;
+using Yarn.Unity;
 
 public class UIManager : MonoBehaviour
 {
@@ -12,6 +15,9 @@ public class UIManager : MonoBehaviour
     [SerializeField]
     [Tooltip("Put your Pause Menu gameobject here")]
     private GameObject _pauseMenu;
+    [SerializeField, Range(-80, 0)] private float _volumeReduction;
+    [SerializeField] private AudioMixer _audioMixer;
+    private float _presetVolume;
 
     [SerializeField]
     [Tooltip("Put your Player Stamina script here")]
@@ -21,6 +27,7 @@ public class UIManager : MonoBehaviour
     [Tooltip("Put your Stamina Bar gameobject here")]
     private GameObject _staminaBar;
     [SerializeField] private GameObject _staminaUnitPrefab;
+    [SerializeField] private GameObject _tutorialModal;
     private List<GameObject> _staminaUnits = new List<GameObject>();
     private List<Image> _staminaUnitsImages = new List<Image>();
 
@@ -35,11 +42,18 @@ public class UIManager : MonoBehaviour
     [SerializeField] private AudioClip _openPauseMenuClip;
     [SerializeField] private AudioClip _closePauseMenuClip;
 
+    [Header("Float indicator")]
+    [SerializeField] private GameObject _floatIndicator;
+    [SerializeField] private Sprite _floatIndicatorOn;
+    [SerializeField] private Sprite _floatIndicatorOff;
+
     [Header("Stamina Unit Sprites")]
     [SerializeField] private Sprite _staminaUnitFull;
     [SerializeField] private Sprite _staminaUnitEmpty;
 
     [SerializeField] private Sprite[] _shardSprites;
+
+    private ThirdPersonController _playerController;
 
     private void Start()
     {
@@ -81,6 +95,18 @@ public class UIManager : MonoBehaviour
         UpdateShardIndicator();
 
         _pauseMenu.SetActive(false);
+
+        _playerController = FindObjectOfType<ThirdPersonController>();
+    }
+
+    private void OnEnable()
+    {
+        StarterAssetsInputs.FloatPressed += ShowFloatIndicator;
+    }
+
+    private void OnDisable()
+    {
+        StarterAssetsInputs.FloatPressed -= ShowFloatIndicator;
     }
 
     private void Update()
@@ -102,6 +128,8 @@ public class UIManager : MonoBehaviour
     {
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
+        _audioMixer.GetFloat("MasterVolume", out _presetVolume);
+        _audioMixer.SetFloat("MasterVolume", _presetVolume + _volumeReduction);
         foreach (Transform child in _canvas.transform)
         {
             if (child.gameObject.tag == "Yarn") child.gameObject.SetActive(false);
@@ -116,6 +144,7 @@ public class UIManager : MonoBehaviour
     {
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
+        _audioMixer.SetFloat("MasterVolume", _presetVolume);
         foreach (Transform child in _canvas.transform)
         {
             if (child.gameObject.tag == "Yarn") child.gameObject.SetActive(true);
@@ -165,10 +194,25 @@ public class UIManager : MonoBehaviour
         StartCoroutine(ShardIndicatorTimer());
     }
 
+    [YarnCommand("show_tutorial_modal")]
+    public void ShowTutorialModal()
+    {
+        if (_tutorialModal == null) return;
+
+        _tutorialModal.SetActive(true);
+    }
+
     private System.Collections.IEnumerator ShardIndicatorTimer()
     {
         yield return new WaitForSeconds(_shardIndicatorShowDuration);
         _shardIndicatorAnimator.SetBool("visible", false);
+    }
+
+    private void ShowFloatIndicator()
+    {
+        Image image = _floatIndicator.GetComponent<Image>();
+        if (_playerController.FloatMode) image.sprite = _floatIndicatorOn;
+        else image.sprite = _floatIndicatorOff;
     }
 
     private void ErrorAndDisable(string text)

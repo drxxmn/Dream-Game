@@ -1,0 +1,98 @@
+﻿title: ValeAndLiza
+---
+<<declare $couplesQuest = 0 as number>>
+<<declare $item_2 = 0 as number>>
+<<if $couplesQuest == 0>>
+    <<jump BobValeAndLiza_Intro>>
+<<elseif $couplesQuest == 1 and $item_2 == 0>>
+    // Quest started but ring not found
+    Vale: It's so cold here! Why don't we go home, sweety?
+    Liza: We're not going home until we have found your ring!
+    Vale: *sigh*
+<<elseif $couplesQuest == 1 and $item_2 > 0>>
+    // Quest started and ring found
+    Liza: Brr... my tail is going to freeze off at this rate.
+    Vale: Let's go home then, sweety. We'll—
+    Liza: WE'RE NOT GOING HOME UNTIL WE HAVE FOUND YOUR RING!!
+    Player: Uhm.. hello again.
+    Liza: Ah! Our helping angel!
+    Liza: Oh, please tell me that you've found Vale's ring!
+    Player: I have! Here it is.
+    <<jump ValeAndLiza_RingFound>>
+<<else>>
+    <<jump ValeAndLiza_QuestComplete>>
+<<endif>>
+===
+
+title: BobValeAndLiza_Intro
+position: 250,150
+---
+Liza: I [bold]cannot believe[/bold] that you lost it!
+Vale: Well dear, I—
+Liza: [bold]How[/bold] could you lose it!
+Vale: It must have—
+Liza: What if we never find it again?!
+<<if $voiceFragments < 4>>
+    Vale: *sigh*
+<<else>>
+    Vale: We could start—
+    Liza: Ah! Look! Someone's there!
+    Liza: Hi! You there! Could you please help us?
+    Player: Hello! What's the matter?
+    Liza: My [italic]dearest[/italic] Vale has lost their wedding ring!
+    Vale: ...
+    Liza: And they don't even remember were they last had it!
+    Vale: ...
+    <<if $item_2 > 0>>
+        Player: Oh, a golden ring?
+        Liza: Yes!
+        Player: I found this ring on Calico Beach earlier.
+        Liza: That's it! That's Vale's ring!
+        Player: Here you go!
+        <<jump ValeAndLiza_RingFound>>
+    <<else>>
+        Player: Don't worry, I'll keep an eye out for your ring.
+        Liza: Oh, that is very sweet of you. Thank you!
+        Liza: My name is Liza by the way.
+        Player: Nice to meet you both!
+        Player: Do you have any suggestions about where to start my search?
+        Vale: We've hiked all over the island today.
+        Vale: You see, we're celebrating our anniversary...
+        Liza: We were celebrating... until you lost your ring.
+        Liza: Perhaps one of the other inhabitants has seen it.
+        Player: Okay, I'll ask around then!
+        Player: See you soon!
+        Liza: Bye, and thank you again!
+        Vale: Yes, thank you...
+        <<set $couplesQuest to 1>>
+    <<endif>>
+<<endif>>
+===
+
+title: ValeAndLiza_RingFound
+position: 250,0
+---
+<<remove_item Player 2>>
+Liza: Oh, thank you! I don't know what we would have done without you!
+Liza: I would have never been able to forgive Vale for losing it!
+Vale: ...
+Liza: Vale, darling, please give them something for their trouble!
+Vale: Thank you so much for saving me—err... helping us.
+Vale: Take this as a token of our gratitude.
+<<increase_stamina Player 4>>
+Vale: So, can we go home now, sweety?
+Liza: Yes, as soon my paws have thawed.
+Liza: Could you please throw another log on the fire?
+<<set $couplesQuest to 2>>
+===
+
+title: ValeAndLiza_QuestComplete
+position: 0,150
+---
+Vale: Can we please go home now, sweety?
+Liza: Yes yes, we'll leave in a minute.
+Vale: See, everything worked out fine in the end.
+Liza: Yes, but not thanks to you!
+Liza: You're not off the hook yet, dearest!
+Vale: *sigh*
+===

@@ -1033,6 +1033,7 @@ GameObject:
   - component: {fileID: 3893294197879345259}
   - component: {fileID: 6982812146204527121}
   - component: {fileID: 4416926081852918491}
+  - component: {fileID: 2834864934947263181}
   - component: {fileID: 7168664438955087471}
   - component: {fileID: 4416926081852918490}
   - component: {fileID: 5885216827943657505}
@@ -1103,6 +1104,14 @@ CharacterController:
   m_SkinWidth: 0.02
   m_MinMoveDistance: 0
   m_Center: {x: 0, y: 0.93, z: 0}
+--- !u!81 &2834864934947263181
+AudioListener:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4416926081852918481}
+  m_Enabled: 1
 --- !u!114 &7168664438955087471
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1149,6 +1158,7 @@ MonoBehaviour:
   Gravity: -15
   JumpTimeout: 0.3
   FallTimeout: 0.15
+  YPositionTeleport: -1
   FloatMode: 0
   GravityReduction: 0.1
   Grounded: 1
@@ -1312,6 +1322,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b5410d683f5d6c34c87c8023191c297a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _variableStorage: {fileID: 0}
   MaxStamina: 1
   RegenerationRate: 1
   ShardsToUpgrade: 4

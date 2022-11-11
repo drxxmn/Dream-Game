@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using UnityEngine;
+using UnityEngine.UI;
 
 // This file is a demonstration of how to build a simple Dialogue View that
 // presents lines, by subclassing DialogueViewBase and overriding certain
@@ -34,16 +35,15 @@ public class SpeechBubbleLineView : DialogueViewBase
 
     // The game object that should animate in and out.
     [SerializeField] RectTransform container;
+    [SerializeField] Image backgroundImage;
+    [SerializeField] Color playerColor;
 
     // If this is true, then the line view will not automatically report that
     // it's done showing a line, and will instead wait for InterruptLine to be
     // called (which happens when UserRequestedViewAdvancement is called.)
     [SerializeField] private bool waitForInput;
 
-    [Header("Pixel Filter")]
-    [SerializeField] private bool pixelFilterEnabled;
-    [SerializeField] private float pixelFilterWidth;
-    [SerializeField] private float pixelFilterHeight;
+    [SerializeField] private RenderTexture pixelFilter;
 
     // The current coroutine that's playing out a scaling animation. When this
     // is not null, we're in the middle of an animation.
@@ -105,7 +105,6 @@ public class SpeechBubbleLineView : DialogueViewBase
         // Start displaying the line: set our scale to zero, and update our
         // text.
         Scale = 0;
-        text.text = dialogueLine.Text.Text;
 
         // Separate character from text and reposition line view.
         string[] splitText = dialogueLine.Text.Text.Split(":");
@@ -119,6 +118,9 @@ public class SpeechBubbleLineView : DialogueViewBase
             speakers.Add(characterName, characterSpeaking);
         }
         else characterSpeaking = speakers[characterName];
+
+        if (characterSpeaking.name == "Player") backgroundImage.color = playerColor;
+        else backgroundImage.color = Color.white;
 
         // During presentation, if we get an advance signal, we'll indicate that
         // we want to interrupt.
@@ -296,9 +298,9 @@ public class SpeechBubbleLineView : DialogueViewBase
             // When the pixel filter is enabled, the camera view gets resized.
             // The screenpoint therefore has to be multiplied by a scale 
             // factor, otherwise its position is not correct.
-            if (pixelFilterEnabled)
+            if (pixelFilter != null)
             {
-                screenPoint *= (Screen.width / pixelFilterWidth);
+                screenPoint *= (Screen.width / pixelFilter.width * 1.15f);
             }
 
             container.position = screenPoint;

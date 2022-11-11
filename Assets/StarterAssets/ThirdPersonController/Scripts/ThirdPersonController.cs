@@ -89,6 +89,8 @@ namespace StarterAssets
         [Tooltip("For locking the camera position on all axis")]
         public bool LockCameraPosition = false;
 
+        public bool CanMove { get; set; } = true;
+
         // cinemachine
         private float _cinemachineTargetYaw;
         private float _cinemachineTargetPitch;
@@ -121,11 +123,13 @@ namespace StarterAssets
         private GameObject _mainCamera;
         private PlayerStamina _stamina;
 
-        private Vector3 lastGrounded;
+        private Vector3 _lastGrounded;
 
         private const float _threshold = 0.01f;
 
         private bool _hasAnimator;
+
+        private ParticleSystem _dustParticle;
 
         private bool IsCurrentDeviceMouse
         {
@@ -159,6 +163,7 @@ namespace StarterAssets
             _stamina = GetComponent<PlayerStamina>();
 #if ENABLE_INPUT_SYSTEM && STARTER_ASSETS_PACKAGES_CHECKED
             _playerInput = GetComponent<PlayerInput>();
+            _dustParticle = GetComponentInChildren<ParticleSystem>();
 #else
 			Debug.LogError( "Starter Assets package is missing dependencies. Please use Tools/Starter Assets/Reinstall Dependencies to fix it");
 #endif
@@ -170,14 +175,24 @@ namespace StarterAssets
             _fallTimeoutDelta = FallTimeout;
         }
 
+        private void OnEnable()
+        {
+            StarterAssetsInputs.FloatPressed += FloatToggle;
+        }
+
+        private void OnDisable()
+        {
+            StarterAssetsInputs.FloatPressed -= FloatToggle;
+        }
+
         private void Update()
         {
             _hasAnimator = TryGetComponent(out _animator);
 
-            FloatCheck();
             JumpAndGravity();
             GroundedCheck();
             Move();
+            ParticleManager();
         }
 
         private void LateUpdate()
@@ -194,13 +209,9 @@ namespace StarterAssets
             _animIDMotionSpeed = Animator.StringToHash("MotionSpeed");
         }
 
-        private void FloatCheck()
+        private void FloatToggle()
         {
-            if (_input.playerFloat)
-            {
-                _input.playerFloat = false;
-                FloatMode = !FloatMode;
-            }
+            FloatMode = !FloatMode;
         }
 
         private void GroundedCheck()
@@ -216,8 +227,13 @@ namespace StarterAssets
             {
                 RaycastHit hit;
                 Physics.Raycast(transform.position, Vector3.down, out hit, 50f, GroundLayers);
-                if (hit.normal.y != 0 && hit.normal.y < .8f) Grounded = false;
-                lastGrounded = transform.position;
+                if (hit.normal.y != 0 && hit.normal.y < .8f)
+                {
+                    Grounded = false;
+                    Vector3 pushback = new Vector3(hit.normal.x, -.6f, hit.normal.z);
+                    _controller.Move(pushback * .05f);
+                }
+                _lastGrounded = transform.position;
             }
             else if (transform.position.y < YPositionTeleport)
             {
@@ -262,7 +278,7 @@ namespace StarterAssets
 
             // note: Vector2's == operator uses approximation so is not floating point error prone, and is cheaper than magnitude
             // if there is no input, set the target speed to 0
-            if (_input.move == Vector2.zero) targetSpeed = 0.0f;
+            if (_input.move == Vector2.zero || !CanMove) targetSpeed = 0.0f;
 
             // a reference to the players current horizontal velocity
             float currentHorizontalSpeed = new Vector3(_controller.velocity.x, 0.0f, _controller.velocity.z).magnitude;
@@ -448,6 +464,19 @@ namespace StarterAssets
                     AudioSource.PlayClipAtPoint(FootstepAudioClips[index], transform.TransformPoint(_controller.center), FootstepAudioVolume);
                 }
             }
+        }
+
+        private void ParticleManager()
+        {
+            if (Grounded && !_dustParticle.isPlaying)
+            {
+                _dustParticle.Play();
+            }
+            else if (!Grounded)
+            {
+                _dustParticle.Stop();
+            }
+
         }
 
         private void OnLand(AnimationEvent animationEvent)

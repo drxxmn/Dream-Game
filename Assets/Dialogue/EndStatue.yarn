@@ -1,0 +1,24 @@
+﻿title: EndStatue
+---
+EndStatue: Congratulations, brave explorer of the Dream Island!
+EndStatue: You have recovered your voice and made it all the way up here!
+<<if $receivedGiftFromHiker>>
+    EndStatue: You have travelled far and wide, even earning the respect of our resident Hiker!
+<<endif>>
+<<if $foundRupert>>
+    EndStatue: You helped reunite little Veera with her best friend, Rupert. Well done!
+<<endif>>
+<<if $couplesQuest == 2>>
+    EndStatue: You found and returned Vale's wedding ring.
+    EndStatue: Because of that, they were able to return home and enjoy the rest of their anniversary.
+<<endif>>
+EndStatue: You have recovered {$voiceFragments} fragments on your journey.
+<<if $voiceFragments >= 44>>
+    EndStatue: Thats really impressive! You recovered them all!
+<<else>>
+    EndStatue: You've missed a few. But it is still a very impressive amount!
+<<endif>>
+EndStatue: It is now time for you to return to the waking world!
+EndStatue: Thank you for visiting us and we hope to see you again someday!
+<<start_outro OutroDirector>>
+===
