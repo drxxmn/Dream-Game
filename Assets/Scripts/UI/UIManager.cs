@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using StarterAssets;
 using TMPro;
 using UnityEngine;
+using UnityEngine.Audio;
 using UnityEngine.UI;
 using Yarn.Unity;
 
@@ -14,6 +15,9 @@ public class UIManager : MonoBehaviour
     [SerializeField]
     [Tooltip("Put your Pause Menu gameobject here")]
     private GameObject _pauseMenu;
+    [SerializeField, Range(-80, 0)] private float _volumeReduction;
+    [SerializeField] private AudioMixer _audioMixer;
+    private float _presetVolume;
 
     [SerializeField]
     [Tooltip("Put your Player Stamina script here")]
@@ -124,6 +128,8 @@ public class UIManager : MonoBehaviour
     {
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
+        _audioMixer.GetFloat("MasterVolume", out _presetVolume);
+        _audioMixer.SetFloat("MasterVolume", _presetVolume + _volumeReduction);
         foreach (Transform child in _canvas.transform)
         {
             if (child.gameObject.tag == "Yarn") child.gameObject.SetActive(false);
@@ -138,6 +144,7 @@ public class UIManager : MonoBehaviour
     {
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
+        _audioMixer.SetFloat("MasterVolume", _presetVolume);
         foreach (Transform child in _canvas.transform)
         {
             if (child.gameObject.tag == "Yarn") child.gameObject.SetActive(true);

@@ -79,7 +79,7 @@ public class YarnTriggerBubble : MonoBehaviour
             // factor, otherwise its position is not correct.
             if (pixelFilter != null)
             {
-                screenPoint *= (Screen.width / pixelFilter.width * 1.1f);
+                screenPoint *= (Screen.width / pixelFilter.width * 1.15f);
             }
 
             container.position = screenPoint;

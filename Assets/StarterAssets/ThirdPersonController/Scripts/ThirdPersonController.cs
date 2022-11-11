@@ -227,7 +227,12 @@ namespace StarterAssets
             {
                 RaycastHit hit;
                 Physics.Raycast(transform.position, Vector3.down, out hit, 50f, GroundLayers);
-                if (hit.normal.y != 0 && hit.normal.y < .8f) Grounded = false;
+                if (hit.normal.y != 0 && hit.normal.y < .8f)
+                {
+                    Grounded = false;
+                    Vector3 pushback = new Vector3(hit.normal.x, -.6f, hit.normal.z);
+                    _controller.Move(pushback * .05f);
+                }
                 _lastGrounded = transform.position;
             }
             else if (transform.position.y < YPositionTeleport)

@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using UnityEngine;
+using UnityEngine.UI;
 
 // This file is a demonstration of how to build a simple Dialogue View that
 // presents lines, by subclassing DialogueViewBase and overriding certain
@@ -34,6 +35,8 @@ public class SpeechBubbleLineView : DialogueViewBase
 
     // The game object that should animate in and out.
     [SerializeField] RectTransform container;
+    [SerializeField] Image backgroundImage;
+    [SerializeField] Color playerColor;
 
     // If this is true, then the line view will not automatically report that
     // it's done showing a line, and will instead wait for InterruptLine to be
@@ -115,6 +118,9 @@ public class SpeechBubbleLineView : DialogueViewBase
             speakers.Add(characterName, characterSpeaking);
         }
         else characterSpeaking = speakers[characterName];
+
+        if (characterSpeaking.name == "Player") backgroundImage.color = playerColor;
+        else backgroundImage.color = Color.white;
 
         // During presentation, if we get an advance signal, we'll indicate that
         // we want to interrupt.
@@ -294,7 +300,7 @@ public class SpeechBubbleLineView : DialogueViewBase
             // factor, otherwise its position is not correct.
             if (pixelFilter != null)
             {
-                screenPoint *= (Screen.width / pixelFilter.width * 1.1f);
+                screenPoint *= (Screen.width / pixelFilter.width * 1.15f);
             }
 
             container.position = screenPoint;

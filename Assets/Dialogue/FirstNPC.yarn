@@ -24,7 +24,7 @@
     Bob: Use the power of your voice to get to the top of Mt. Dreammore.
     Bob: The legend says that is where you'll be able to wake up again!
     Bob: Good luck!
-    <<show_tutorial_modal UI>>
+    <<display_notification NotificationPanel "Press ESC to open the pause menu and view the controls.">>
     <<set $spokenToBob to true>>
 <<elseif $voiceFragments >= 4>>
     Bob: Hey! It's you again!

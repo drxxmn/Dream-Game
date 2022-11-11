@@ -59,6 +59,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _snapshotIn: {fileID: 0}
-  _snapshotOut: {fileID: 24500006, guid: 16a1803adc79b264e88bc895f310075a, type: 2}
+  _snapshotOut: {fileID: -2418765695434074300, guid: 16a1803adc79b264e88bc895f310075a, type: 2}
   _transitionIn: 5
   _transitionOut: 5
