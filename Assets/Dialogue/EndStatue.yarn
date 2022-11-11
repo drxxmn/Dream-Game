@@ -13,7 +13,7 @@ EndStatue: You have recovered your voice and made it all the way up here!
     EndStatue: Because of that, they were able to return home and enjoy the rest of their anniversary.
 <<endif>>
 EndStatue: You have recovered {$voiceFragments} fragments on your journey.
-<<if $voiceFragments >= 40>>
+<<if $voiceFragments >= 44>>
     EndStatue: Thats really impressive! You recovered them all!
 <<else>>
     EndStatue: You've missed a few. But it is still a very impressive amount!
